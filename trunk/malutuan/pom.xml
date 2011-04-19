@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.malu</groupId>
+    <artifactId>parent</artifactId>
+    <packaging>pom</packaging>
+    <name>malu-parent</name>
+    <version>${malu.version}</version>
+    <modules>
+        <module>paoding-rose-scanning</module>
+        <module>paoding-rose-web</module>
+        <module>paoding-rose-jade</module>
+        <module>paoding-rose-portal</module>
+         <module>malutuan</module>
+    </modules>
+
+    <repositories>
+        <repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public</url>
+		</repository>
+        <repository>
+            <id>offical</id>
+            <name>Maven Official Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+<repository>
+			<id>springside</id>
+			<name>SpringSide Additional Repository</name>
+			<url>http://springside.googlecode.com/svn/repository</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+        <repository>
+            <id>jboss</id>
+            <name>Jboss Repository</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>java.net</id>
+            <name>Java.net Repository</name>
+            <url>http://download.java.net/maven/2/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <malu.version>1.0-SNAPSHOT</malu.version>
+        <paoding-rose-scanning.version>1.0-SNAPSHOT</paoding-rose-scanning.version>
+        <paoding-rose.version>1.0-SNAPSHOT</paoding-rose.version>
+        <paoding-rose-jade.version>1.0-SNAPSHOT</paoding-rose-jade.version>
+        <paoding-rose-portal.version>1.0-SNAPSHOT</paoding-rose-portal.version>
+        <json-rpc.version>1.0</json-rpc.version>
+        <junit.version>4.8.2</junit.version>
+        <spring-mock.version>2.0.8</spring-mock.version>
+        <spring.version>3.0.5.RELEASE</spring.version>
+         <spring-security.version>3.0.5.RELEASE</spring-security.version>
+
+        <hibernate.version>3.6.1.Final</hibernate.version>
+
+        <aspectj.version>1.6.10</aspectj.version>
+        <servlet-api.version>2.5</servlet-api.version>
+        <jsp-api.version>2.0</jsp-api.version>
+        <velocity.version>1.7</velocity.version>
+        <velocity-tools.version>2.0</velocity-tools.version>
+        <commons.dbcp.version>1.4</commons.dbcp.version>
+        <commons.pool.version>1.5.5</commons.pool.version>
+        <commons.beanutils.version>1.8.3</commons.beanutils.version>
+        <commons.fileupload.version>1.2.1</commons.fileupload.version>
+        <commons.io.version>2.0.1</commons.io.version>
+        <commons.jexl.version>1.1</commons.jexl.version>
+        <commons.collections.version>3.2.1</commons.collections.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <commons.logging.version>1.1.1</commons.logging.version>
+        <commons.codec.version>1.4</commons.codec.version>
+        <persistence-api.version>1.0</persistence-api.version>
+        <javamail.version>1.4.1</javamail.version>
+        <log4j.version>1.2.16</log4j.version>
+        <slf4j.version>1.6.1</slf4j.version>
+        <jetty.version>7.3.0.v20110203</jetty.version>
+               <quartz.version>1.8.4</quartz.version>
+               <xmemcached.version>1.3.1</xmemcached.version>
+               <jetty.version>7.3.0.v20110203</jetty.version>
+        <!-- DB JDBC Driver -->
+        <mysql-jdbc.groupId>mysql</mysql-jdbc.groupId>
+        <mysql-jdbc.artifactId>mysql-connector-java</mysql-jdbc.artifactId>
+        <mysql-connector-java.version>5.1.12</mysql-connector-java.version>
+        <activemq.version>5.4.2</activemq.version>
+        	<jackson.version>1.7.4</jackson.version>
+
+		<mybatis.version>3.0.4</mybatis.version>
+		<struts2.version>2.2.1</struts2.version>
+		<cxf.version>2.3.3</cxf.version>
+		<jersey.version>1.6</jersey.version>
+		<shiro.version>1.1.0</shiro.version>
+		<activemq.version>5.4.2</activemq.version>
+		<jetty.version>7.3.0.v20110203</jetty.version>
+		<h2.version>1.3.153</h2.version>
+		<jackson.version>1.7.4</jackson.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<selenium.version>2.0b3</selenium.version>
+
+
+
+
+<mybatis.version>3.0.4</mybatis.version>
+	 
+		<shiro.version>1.1.0</shiro.version>
+
+    </properties>
+
+
+
+    <build>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <testOutputDirectory>target/test/WEB-INF/classes</testOutputDirectory>
+        <resources>
+            <resource>
+                <directory>${project.build.sourceDirectory}</directory>
+                <excludes>
+                    <exclude>.svn</exclude>
+                    <exclude>log4j.*</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/webapp</directory>
+                <targetPath>target/test</targetPath>
+                <filtering>true</filtering>
+            </testResource>
+            <testResource>
+                <directory>src/test/java</directory>
+                <excludes>
+                    <exclude>.svn</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+        <plugins>
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <verbose>true</verbose>
+                    <encoding>UTF-8</encoding>
+                    <compilerArguments>
+                        <sourcepath>${project.basedir}/src/main/java</sourcepath>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin
+                </artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Title>paoding-rose</Implementation-Title>
+                            <Implementation-Version>${Implementation-Version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <includes>src/main/java</includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+
+
+</project>
