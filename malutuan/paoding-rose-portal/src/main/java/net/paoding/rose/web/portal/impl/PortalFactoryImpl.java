@@ -15,35 +15,43 @@
  */
 package net.paoding.rose.web.portal.impl;
 
+import java.util.concurrent.ExecutorService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.impl.thread.InvocationBean;
-import net.paoding.rose.web.portal.*;
+import net.paoding.rose.web.portal.Pipe;
+import net.paoding.rose.web.portal.Portal;
+import net.paoding.rose.web.portal.PortalFactory;
+import net.paoding.rose.web.portal.WindowListener;
+import net.paoding.rose.web.portal.PortalSetting;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.Assert;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
-import java.util.concurrent.ExecutorService;
-
 /**
  * {@link PortalFactory} 的实现。
- * <p/>
- * <p/>
+ * <p>
+ * 
  * 创建 {@link PortalFactoryImpl}实例后，应该通过
  * {@link #setExecutorService(ExecutorService)} 或
  * {@link #setExecutorServiceBySpring(ThreadPoolTaskExecutor)}
  * 设置执行器，用于执行Portal下的每个“窗口请求”。
- * <p/>
- * <p/>
+ * <p>
+ * 
  * 可选设置 {@link WindowListener} 来获知portal的创建以及窗口的创建、执行等状态信息。
- *
- * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  * @see PortalImpl
+ * 
+ * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PortalFactoryImpl implements PortalFactory, InitializingBean {
 

@@ -19,15 +19,18 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface WindowRender {
 
     /**
+     * 
      * @param window
      * @param out
-     * @throws IOException
+     * @throws IOException 
      * @throws IOException
      */
-    public void render(Writer out, Window window) throws IOException;
+    public void render(Writer out,Window window) throws IOException;
 }

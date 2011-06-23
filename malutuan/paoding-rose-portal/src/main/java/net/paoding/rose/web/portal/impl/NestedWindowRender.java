@@ -15,17 +15,20 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.Window;
-import net.paoding.rose.web.portal.WindowRender;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 
+import net.paoding.rose.web.portal.Window;
+import net.paoding.rose.web.portal.WindowRender;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
+ * 
  * @author qieqie
+ * 
  */
 public final class NestedWindowRender implements WindowRender {
 

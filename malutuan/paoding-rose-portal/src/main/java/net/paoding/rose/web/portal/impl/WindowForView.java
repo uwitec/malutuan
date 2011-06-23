@@ -15,9 +15,6 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.Portal;
-import net.paoding.rose.web.portal.Window;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -25,8 +22,13 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.concurrent.Future;
 
+import net.paoding.rose.web.portal.Portal;
+import net.paoding.rose.web.portal.Window;
+
 /**
+ * 
  * @author qieqie.wang@gmail.com
+ * 
  */
 public class WindowForView implements Window {
 

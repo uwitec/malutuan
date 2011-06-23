@@ -15,14 +15,16 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.Window;
-import net.paoding.rose.web.portal.WindowRender;
-
 import java.io.IOException;
 import java.io.Writer;
 
+import net.paoding.rose.web.portal.Window;
+import net.paoding.rose.web.portal.WindowRender;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class SimpleWindowRender implements WindowRender {
 

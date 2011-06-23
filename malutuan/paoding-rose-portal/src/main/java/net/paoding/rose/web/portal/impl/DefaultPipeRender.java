@@ -15,19 +15,22 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.Window;
-import net.paoding.rose.web.portal.WindowRender;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import net.paoding.rose.web.portal.Window;
+import net.paoding.rose.web.portal.WindowRender;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class DefaultPipeRender implements WindowRender {
 

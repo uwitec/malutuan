@@ -15,7 +15,11 @@
  */
 package net.paoding.rose.web.portal.impl;
 
+import java.util.Arrays;
+import java.util.List;
+
 import net.paoding.rose.web.portal.WindowListener;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,11 +31,10 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PortalBeanPostProcessor implements BeanPostProcessor, ApplicationContextAware {
 

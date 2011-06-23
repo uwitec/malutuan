@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class WindowListeners implements WindowListener {
 

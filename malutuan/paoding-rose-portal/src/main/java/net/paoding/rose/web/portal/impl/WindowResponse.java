@@ -15,18 +15,21 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.Window;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.Locale;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponseWrapper;
+
+import net.paoding.rose.web.portal.Window;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 class WindowResponse extends HttpServletResponseWrapper {
 

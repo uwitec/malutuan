@@ -15,15 +15,18 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.util.Enumerator;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
+import net.paoding.rose.web.portal.util.Enumerator;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 class SessionAfterCommitted implements HttpSession {
 

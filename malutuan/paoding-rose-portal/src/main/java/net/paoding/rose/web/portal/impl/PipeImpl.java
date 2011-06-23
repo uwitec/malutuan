@@ -15,14 +15,6 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.Invocation;
-import net.paoding.rose.web.portal.Pipe;
-import net.paoding.rose.web.portal.Window;
-import net.paoding.rose.web.portal.WindowListener;
-import net.paoding.rose.web.portal.WindowListenerAdapter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -31,8 +23,19 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.portal.Pipe;
+import net.paoding.rose.web.portal.WindowListener;
+import net.paoding.rose.web.portal.WindowListenerAdapter;
+import net.paoding.rose.web.portal.Window;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 // TODO: pipe的超时window cancle的工作还没有完成
 public class PipeImpl extends GenericWindowContainer implements Pipe {

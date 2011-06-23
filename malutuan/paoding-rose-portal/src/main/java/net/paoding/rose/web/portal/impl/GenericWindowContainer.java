@@ -15,14 +15,6 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.RoseConstants;
-import net.paoding.rose.web.Invocation;
-import net.paoding.rose.web.portal.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.LinkedList;
@@ -31,10 +23,26 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.paoding.rose.RoseConstants;
+import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.portal.Window;
+import net.paoding.rose.web.portal.WindowCallback;
+import net.paoding.rose.web.portal.WindowContainer;
+import net.paoding.rose.web.portal.WindowListener;
+import net.paoding.rose.web.portal.WindowListeners;
+import net.paoding.rose.web.portal.WindowRender;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * {@link ServerPortal} 的实现类，Portal 框架的核心类。
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public abstract class GenericWindowContainer implements WindowRender, WindowContainer,
         WindowListener {
@@ -56,7 +64,7 @@ public abstract class GenericWindowContainer implements WindowRender, WindowCont
     protected long timeout;
 
     public GenericWindowContainer(Invocation inv, ExecutorService executorService,
-                                  WindowListener portalListener) {
+            WindowListener portalListener) {
         this.invocation = inv;
         this.executorService = executorService;
         addListener(portalListener);
@@ -197,7 +205,7 @@ public abstract class GenericWindowContainer implements WindowRender, WindowCont
         }
     }
 
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings( { "unchecked" })
     protected WindowFuture<?> submitWindow(ExecutorService executor, WindowTask task) {
         Future<?> future = executor.submit(task);
         return new WindowFuture(future, task.getWindow());

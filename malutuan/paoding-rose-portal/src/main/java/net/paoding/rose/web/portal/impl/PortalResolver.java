@@ -22,7 +22,9 @@ import net.paoding.rose.web.portal.Portal;
 import net.paoding.rose.web.portal.PortalFactory;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PortalResolver implements ParamResolver {
 

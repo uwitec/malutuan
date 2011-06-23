@@ -15,6 +15,8 @@
  */
 package net.paoding.rose.web.portal.impl;
 
+import java.lang.reflect.Method;
+
 import net.paoding.rose.RoseConstants;
 import net.paoding.rose.web.ControllerInterceptorAdapter;
 import net.paoding.rose.web.Invocation;
@@ -22,10 +24,10 @@ import net.paoding.rose.web.portal.Pipe;
 import net.paoding.rose.web.portal.PortalUtils;
 import net.paoding.rose.web.portal.Window;
 
-import java.lang.reflect.Method;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PipeInterceptor extends ControllerInterceptorAdapter {
 
@@ -88,7 +90,7 @@ public class PipeInterceptor extends ControllerInterceptorAdapter {
                                                 + window.getName()
                                                 + "@"
                                                 + window.getContainer().getInvocation()
-                                                .getRequestPath() + "'");
+                                                        .getRequestPath() + "'");
                                     }
                                     break;
                                 }
