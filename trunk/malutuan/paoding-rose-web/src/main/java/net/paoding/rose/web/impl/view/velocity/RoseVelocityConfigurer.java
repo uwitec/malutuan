@@ -20,23 +20,19 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class RoseVelocityConfigurer extends VelocityConfigurer {
 
-    /**
-     * the name of the resource loader for Rose's bind macros
-     */
+    /** the name of the resource loader for Rose's bind macros */
     private static final String ROSE_MACRO_RESOURCE_LOADER_NAME = "roseMacro";
 
-    /**
-     * the key for the class of Rose's bind macro resource loader
-     */
+    /** the key for the class of Rose's bind macro resource loader */
     private static final String ROSE_MACRO_RESOURCE_LOADER_CLASS = "roseMacro.resource.loader.class";
 
-    /**
-     * the name of Rose's default bind macro library
-     */
+    /** the name of Rose's default bind macro library */
     private static final String ROSE_MACRO_LIBRARY = "net/paoding/rose/web/impl/view/velocity/rose.vm";
 
     @Override

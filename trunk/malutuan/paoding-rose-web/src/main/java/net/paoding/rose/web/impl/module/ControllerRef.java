@@ -15,22 +15,35 @@
  */
 package net.paoding.rose.web.impl.module;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import net.paoding.rose.web.annotation.AsSuperController;
 import net.paoding.rose.web.annotation.Ignored;
 import net.paoding.rose.web.annotation.ReqMethod;
-import net.paoding.rose.web.annotation.rest.*;
+import net.paoding.rose.web.annotation.rest.Delete;
+import net.paoding.rose.web.annotation.rest.Get;
+import net.paoding.rose.web.annotation.rest.Head;
+import net.paoding.rose.web.annotation.rest.Options;
+import net.paoding.rose.web.annotation.rest.Post;
+import net.paoding.rose.web.annotation.rest.Put;
+import net.paoding.rose.web.annotation.rest.Trace;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.ClassUtils;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.*;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ControllerRef {
 
@@ -48,7 +61,7 @@ public class ControllerRef {
     List<MethodRef> actions;
 
     public ControllerRef(String[] mappingPaths, String controllerName, Object controllerObject,
-                         Class<?> controllerClass) {
+            Class<?> controllerClass) {
         setMappingPaths(mappingPaths);
         setControllerName(controllerName);
         setControllerObject(controllerObject);
@@ -96,9 +109,9 @@ public class ControllerRef {
                                     + controllerClass.getName() + "#" + method.getName());
                         }
                         shotcutMappings = new HashMap<ReqMethod, String[]>();
-                        shotcutMappings.put(ReqMethod.GET, new String[]{"/" + method.getName()});
+                        shotcutMappings.put(ReqMethod.GET, new String[] { "/" + method.getName() });
                         shotcutMappings
-                                .put(ReqMethod.POST, new String[]{"/" + method.getName()});
+                                .put(ReqMethod.POST, new String[] { "/" + method.getName() });
                     }
                 }
                 if (shotcutMappings.size() > 0) {
@@ -139,8 +152,7 @@ public class ControllerRef {
                 restMethods.put(ReqMethod.PUT, ((Put) annotation).value());
             } else if (annotation instanceof Trace) {
                 restMethods.put(ReqMethod.TRACE, ((Trace) annotation).value());
-            } else {
-            }
+            } else {}
         }
         for (String[] paths : restMethods.values()) {
             for (int i = 0; i < paths.length; i++) {

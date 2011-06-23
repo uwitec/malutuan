@@ -15,22 +15,25 @@
  */
 package net.paoding.rose.scanner;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import net.paoding.rose.scanning.LoadScope;
 import net.paoding.rose.scanning.ResourceRef;
 import net.paoding.rose.scanning.RoseScanner;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class RoseResources {
 

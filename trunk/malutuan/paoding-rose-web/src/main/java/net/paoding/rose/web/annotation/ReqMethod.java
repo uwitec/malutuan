@@ -21,9 +21,10 @@ import java.util.List;
 
 /**
  * 用于辅助设置一个控制器action方法映射，声明只有指定的http请求方法才由 {@link Path}作标注的action方法处理
- *
- * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  * @see Path
+ * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public enum ReqMethod {
 
@@ -37,7 +38,7 @@ public enum ReqMethod {
             list.remove(ReqMethod.ALL);
             return list;
         } else {
-            return Arrays.asList(new ReqMethod[]{this});
+            return Arrays.asList(new ReqMethod[] { this });
         }
     }
 

@@ -17,14 +17,15 @@ package net.paoding.rose.web.advancedinterceptor;
 
 /**
  * 如果拦截器实现了此接口，代表这个拦截器关注其在所有拦截器中的顺序。
- *
+ * 
  * @author Administrator
+ * 
  */
 public interface Ordered {
 
     /**
      * 返回一个数字，值大的具有最高优先拦截权
-     *
+     * 
      * @return
      */
     int getPriority();

@@ -15,18 +15,22 @@
  */
 package net.paoding.rose.web.instruction;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.RequestPath;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class RedirectInstruction extends AbstractInstruction {
 
@@ -52,7 +56,7 @@ public class RedirectInstruction extends AbstractInstruction {
 
     /**
      * 设置301永久跳转
-     *
+     * 
      * @return
      */
     public RedirectInstruction permanently() {

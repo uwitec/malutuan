@@ -19,8 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 仅限Rose框架本身内部调用!
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class InvocationUtils {
 

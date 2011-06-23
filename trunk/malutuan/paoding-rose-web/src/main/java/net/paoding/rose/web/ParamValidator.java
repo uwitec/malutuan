@@ -16,16 +16,19 @@
 package net.paoding.rose.web;
 
 import net.paoding.rose.web.paramresolver.ParamMetaData;
+
 import org.springframework.validation.Errors;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface ParamValidator {
 
     /**
      * 返回true表示是由本解析器负责解析这种类型的参数.
-     *
+     * 
      * @param metaData
      * @return
      */

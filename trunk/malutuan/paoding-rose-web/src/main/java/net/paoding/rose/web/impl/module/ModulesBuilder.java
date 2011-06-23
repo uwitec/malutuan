@@ -15,19 +15,20 @@
  */
 package net.paoding.rose.web.impl.module;
 
-import net.paoding.rose.scanner.ModuleResource;
-import org.springframework.web.context.WebApplicationContext;
-
 import java.util.List;
+
+import net.paoding.rose.scanner.ModuleResource;
+
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * 根据输入的module类信息，构造出具体的Module结构出来
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  */
 public interface ModulesBuilder {
 
     public List<Module> build(List<ModuleResource> moduleResources,
-                              WebApplicationContext rootContext) throws Exception;
+            WebApplicationContext rootContext) throws Exception;
 
 }

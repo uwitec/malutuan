@@ -15,17 +15,35 @@
  */
 package net.paoding.rose.web.impl.module;
 
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+
 import net.paoding.rose.RoseConstants;
 import net.paoding.rose.scanner.ModuleResource;
 import net.paoding.rose.util.RoseStringUtil;
 import net.paoding.rose.util.SpringUtils;
-import net.paoding.rose.web.*;
+import net.paoding.rose.web.ControllerErrorHandler;
+import net.paoding.rose.web.ControllerInterceptor;
+import net.paoding.rose.web.InterceptorDelegate;
+import net.paoding.rose.web.OncePerRequestInterceptorDelegate;
+import net.paoding.rose.web.ParamValidator;
 import net.paoding.rose.web.advancedinterceptor.Ordered;
 import net.paoding.rose.web.annotation.Ignored;
 import net.paoding.rose.web.annotation.Interceptor;
 import net.paoding.rose.web.annotation.NotForSubModules;
 import net.paoding.rose.web.annotation.Path;
 import net.paoding.rose.web.paramresolver.ParamResolver;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -41,15 +59,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 
-import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Proxy;
-import java.util.*;
-
 /**
  * 根据输入的module类信息，构造出具体的Module结构出来
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  */
 public class ModulesBuilderImpl implements ModulesBuilder {
@@ -57,7 +69,7 @@ public class ModulesBuilderImpl implements ModulesBuilder {
     private Log logger = LogFactory.getLog(getClass());
 
     public List<Module> build(List<ModuleResource> moduleResources,
-                              WebApplicationContext rootContext) throws Exception {
+            WebApplicationContext rootContext) throws Exception {
 
         // 重排序，使父级别的模块资源比子模块资源先处理
         moduleResources = new ArrayList<ModuleResource>(moduleResources);
@@ -85,7 +97,7 @@ public class ModulesBuilderImpl implements ModulesBuilder {
                     moduleResource.getMessageBasenames(),//
                     /*id*/moduleResource.getModuleUrl().toString(),//
                     namespace//
-            );
+                    );
 
             // 扫描找到的类...定义到applicationContext
             registerBeanDefinitions(moduleContext, moduleResource.getModuleClasses());
@@ -222,7 +234,7 @@ public class ModulesBuilderImpl implements ModulesBuilder {
     }
 
     private boolean checkController(final XmlWebApplicationContext context, String beanName,
-                                    ModuleImpl module) throws IllegalAccessException {
+            ModuleImpl module) throws IllegalAccessException {
         AbstractBeanDefinition beanDefinition = (AbstractBeanDefinition) context.getBeanFactory()
                 .getBeanDefinition(beanName);
         String beanClassName = beanDefinition.getBeanClassName();
@@ -231,7 +243,7 @@ public class ModulesBuilderImpl implements ModulesBuilder {
             if (beanClassName.length() > suffix.length() && beanClassName.endsWith(suffix)) {
                 if (suffix.length() == 1
                         && Character.isUpperCase(beanClassName.charAt(beanClassName.length()
-                        - suffix.length() - 1))) {
+                                - suffix.length() - 1))) {
                     continue;
                 }
                 controllerSuffix = suffix;
@@ -299,7 +311,7 @@ public class ModulesBuilderImpl implements ModulesBuilder {
                 // 这个异常的意思是让大家在IndexController/HomeController/WelcomeController上明确标注@Path("")
                 throw new IllegalArgumentException("please add @Path(\"\") to " + clazz.getName());
             } else {
-                controllerPaths = new String[]{"/" + controllerName};
+                controllerPaths = new String[] { "/" + controllerName };
             }
         }
         // 这个Controller是否已经在Context中配置了?
@@ -399,9 +411,7 @@ public class ModulesBuilderImpl implements ModulesBuilder {
         return true;
     }
 
-    /**
-     * 错误处理器，只从本容器找，不从父容器找
-     */
+    /** 错误处理器，只从本容器找，不从父容器找 */
     private ControllerErrorHandler getContextErrorHandler(XmlWebApplicationContext context) {
         ControllerErrorHandler errorHandler = null;
         String[] names = context.getBeanNamesForType(ControllerErrorHandler.class);
@@ -486,7 +496,7 @@ public class ModulesBuilderImpl implements ModulesBuilder {
             final String rose = "rose";
             if (interceporName.startsWith(rose)
                     && (interceporName.length() == rose.length() || Character
-                    .isUpperCase(interceporName.charAt(rose.length())))
+                            .isUpperCase(interceporName.charAt(rose.length())))
                     && !userClass.getName().startsWith("net.paoding.rose.")) {
                 throw new IllegalArgumentException("illegal interceptor name '" + interceporName
                         + "' for " + userClass.getName()

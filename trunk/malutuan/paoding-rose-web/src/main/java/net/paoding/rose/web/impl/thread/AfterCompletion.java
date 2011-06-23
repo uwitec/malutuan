@@ -18,15 +18,17 @@ package net.paoding.rose.web.impl.thread;
 import net.paoding.rose.web.Invocation;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface AfterCompletion {
 
     /**
      * 整个流程(包括页面render流程)结束时调用，不管是否发生过异常。如果发生了异常，则将传送一个非空的Throwable对象到该方法。
-     * <p/>
+     * <p>
      * 只有之前调用before时返回true时才会调用到它的afterRender方法
-     *
+     * 
      * @param inv
      * @param ex
      * @throws Exception

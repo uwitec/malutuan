@@ -15,10 +15,13 @@
  */
 package net.paoding.rose.web.paramresolver;
 
+import java.lang.reflect.Method;
+
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.annotation.DefValue;
 import net.paoding.rose.web.annotation.Param;
 import net.paoding.rose.web.impl.validation.ParameterBindingResult;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.TypeConverter;
@@ -26,8 +29,6 @@ import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 import org.springframework.validation.FieldError;
-
-import java.lang.reflect.Method;
 
 /**
  * @author 王志亮 [qieqie.wang@gmail.com]
@@ -47,7 +48,7 @@ public final class MethodParameterResolver {
     private final ParamMetaData[] paramMetaDatas;
 
     public MethodParameterResolver(Class<?> controllerClazz, Method method,
-                                   ParameterNameDiscovererImpl parameterNameDiscoverer, ResolverFactory resolverFactory) {
+            ParameterNameDiscovererImpl parameterNameDiscoverer, ResolverFactory resolverFactory) {
         this.method = method;
         Class<?>[] parameterTypes = method.getParameterTypes();
         parameterNames = parameterNameDiscoverer.getParameterNames(method);
@@ -81,7 +82,7 @@ public final class MethodParameterResolver {
     // ---------------------------------------------------------
 
     public Object[] resolve(final Invocation inv,
-                            final ParameterBindingResult parameterBindingResult) throws Exception {
+            final ParameterBindingResult parameterBindingResult) throws Exception {
         Object[] parameters = new Object[paramMetaDatas.length];
         for (int i = 0; i < resolvers.length; i++) {
             if (resolvers[i] == null) {
@@ -147,8 +148,8 @@ public final class MethodParameterResolver {
                         paramName, // 出错的字段的名字；取其参数名
                         inv.getParameter(paramName), // 被拒绝的值
                         true,//whether this error represents a binding failure (like a type mismatch); else, it is a validation failure
-                        new String[]{e.getErrorCode()},// "typeMismatch"
-                        new String[]{inv.getParameter(paramName)}, //the array of arguments to be used to resolve this message
+                        new String[] { e.getErrorCode() },// "typeMismatch"
+                        new String[] { inv.getParameter(paramName) }, //the array of arguments to be used to resolve this message
                         null // the default message to be used to resolve this message
                 );
                 parameterBindingResult.addError(fieldError);

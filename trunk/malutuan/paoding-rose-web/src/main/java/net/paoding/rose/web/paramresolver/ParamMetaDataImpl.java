@@ -22,7 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@opi-corp.com]
+ * 
  */
 class ParamMetaDataImpl implements ParamMetaData {
 
@@ -41,7 +43,7 @@ class ParamMetaDataImpl implements ParamMetaData {
     private int index;
 
     public ParamMetaDataImpl(Class<?> controllerClass, Method method, Class<?> paramType,
-                             String paramName, int index) {
+            String paramName, int index) {
         this.controllerClass = controllerClass;
         this.method = method;
         this.setParamName(paramName);

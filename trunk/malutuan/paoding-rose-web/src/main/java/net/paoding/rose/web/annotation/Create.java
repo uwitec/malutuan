@@ -15,24 +15,31 @@
  */
 package net.paoding.rose.web.annotation;
 
-import net.paoding.rose.web.paramresolver.ResolverFactoryImpl.HttpSessionResolver;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 import javax.servlet.http.HttpSession;
-import java.lang.annotation.*;
+
+import net.paoding.rose.web.paramresolver.ResolverFactoryImpl.HttpSessionResolver;
 
 /**
  * 将Create标注在控制器方法参数上，表示该参数必须或不必须创建，比如对 {@link HttpSession}参数，可通过配置
  * {@link Create} 为false，表示如果原先没有 HttpSession 时，保留为null，不用创建。
- *
- * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  * @see HttpSessionResolver
+ * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.PARAMETER})
+@Target( { ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Create {
 
     /**
+     * 
      * @return
      */
     boolean value() default true;

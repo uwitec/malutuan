@@ -15,6 +15,19 @@
  */
 package net.paoding.rose;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import net.paoding.rose.scanner.ModuleResource;
 import net.paoding.rose.scanner.ModuleResourceProvider;
 import net.paoding.rose.scanner.ModuleResourceProviderImpl;
@@ -27,7 +40,11 @@ import net.paoding.rose.web.impl.mapping.ConstantMapping;
 import net.paoding.rose.web.impl.mapping.Mapping;
 import net.paoding.rose.web.impl.mapping.MappingNode;
 import net.paoding.rose.web.impl.mapping.TreeBuilder;
-import net.paoding.rose.web.impl.mapping.ignored.*;
+import net.paoding.rose.web.impl.mapping.ignored.IgnoredPath;
+import net.paoding.rose.web.impl.mapping.ignored.IgnoredPathEnds;
+import net.paoding.rose.web.impl.mapping.ignored.IgnoredPathEquals;
+import net.paoding.rose.web.impl.mapping.ignored.IgnoredPathRegexMatch;
+import net.paoding.rose.web.impl.mapping.ignored.IgnoredPathStarts;
 import net.paoding.rose.web.impl.module.Module;
 import net.paoding.rose.web.impl.module.ModulesBuilder;
 import net.paoding.rose.web.impl.module.ModulesBuilderImpl;
@@ -36,6 +53,7 @@ import net.paoding.rose.web.impl.thread.RootEngine;
 import net.paoding.rose.web.impl.thread.Rose;
 import net.paoding.rose.web.instruction.InstructionExecutor;
 import net.paoding.rose.web.instruction.InstructionExecutorImpl;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -45,48 +63,36 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.util.NestedServletException;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.List;
-
 /**
  * Rose 是一个基于Servlet规范、Spring“规范”的WEB开发框架。
- * <p/>
+ * <p>
  * Rose 框架通过在web.xml配置过滤器拦截并处理匹配的web请求，如果一个请求应该由在Rose框架下的类来处理，
  * 该请求将在Rose调用中完成对客户端响应.
  * 如果一个请求在Rose中没有找到合适的类来为他服务，Rose将把该请求移交给web容器的其他组件来处理。
- * <p/>
- * <p/>
+ * <p>
+ * 
  * Rose使用过滤器而非Servlet来接收web请求，这有它的合理性以及好处。
- * <p/>
+ * <p>
  * Servlet规范以“边走边看”的方式来处理请求，
  * 当服务器接收到一个web请求时，并没有要求在web.xml必须有相应的Servlet组件时才能处理，web请求被一系列Filter过滤时，
  * Filter可以拿到相应的Request和Response对象
  * ，当Filter认为自己已经能够完成整个处理，它可以不调用整个处理链的下个组件处理.
- * <p/>
+ * <p>
  * 使用过滤器的好处是，Rose可以很好地和其他web框架兼容。这在改造遗留系统、对各种uri的支持具有天然优越性。正是使用过滤器，
  * Rose不在要求请求地址具有特殊的后缀。
- * <p/>
+ * <p>
  * 为了更好地理解，可以把Rose过滤器看成能将某些请求其它Filter或Servlet传递的Servlet。这个刚好是普通Servlet无法做到的
  * ： 如果一个请求以后缀名配置给他处理时候
  * ，一旦该Servlet处理不了，Servlet规范没有提供机制使得可以由配置在web.xml的其他正常组件处理
  * (除404，500等错误处理组件之外)。
- * <p/>
- * <p/>
+ * <p>
+ * 
  * 一个web.xml中可能具有不只一个的Filter，Filter的先后顺序对系统具有重要影响，特别的，Rose自己的过滤器的配置顺序更是需要讲究
  * 。 如果一个请求在被Rose处理前应该被某些过滤器过滤，请把这些过滤器的mapping配置在Rose过滤器之前。
- * <p/>
- * <p/>
+ * <p>
+ * 
  * RoseFilter的配置，建议按以下配置即可：
- * <p/>
+ * 
  * <pre>
  * 	&lt;filter&gt;
  * 		&lt;filter-name&gt;roseFilter&lt;/filter-name&gt;
@@ -100,48 +106,46 @@ import java.util.List;
  * 		&lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;
  * 	&lt;/filter-mapping&gt;
  * </pre>
- * <p/>
+ * 
  * 1) 大多数请况下，<strong>filter-mapping</strong> 应配置在所有Filter Mapping的最后。<br>
  * 2) 不能将 <strong>FORWARD、INCLUDE</strong> 的 dispatcher 去掉，否则forward、
  * include的请求Rose框架将拦截不到<br>
- * <p/>
- * <p/>
+ * <p>
+ * 
  * Rose框架内部采用<strong>"匹配->执行"</strong>两阶段逻辑。Rose内部结构具有一个匹配树，
  * 这个数据结构可以快速判断一个请求是否应该由Rose处理并进行， 没有找到匹配的请求交给过滤器的下一个组件处理。匹配成功的请求将进入”执行“阶段。
  * 执行阶段需要经过6个步骤处理：<strong>“参数解析 -〉 验证器 -〉 拦截器 -〉 控制器 -〉 视图渲染
  * -〉渲染后"</strong>的处理链。
- * <p/>
- * <p/>
+ * <p>
+ * 
  * <strong>匹配树</strong>: <br>
  * TODO
- * <p/>
- * <p/>
+ * <p>
+ * 
  * <strong>匹配过程</strong>: <br>
  * TODO
- * <p/>
- * <p/>
+ * <P>
+ * 
  * <strong>参数解析</strong>: <br>
  * 在调用验证器、拦截器
  * 控制器之前，Rose完成2个解析：解析匹配树上动态的参数出实际值，解析控制器方法中参数实际的值。参数可能会解析失败(例如转化异常等等
  * )，此时该参数以默认值进行代替，同时Rose解析失败和异常记录起来放到专门的类中，继续下一个过程而不打断执行。
- * <p/>
- * <p/>
+ * <P>
+ * 
  * <strong>拦截器</strong>: <br>
  * Rose使用自定义的拦截器接口而非一般的拦截器接口这是有理由的。使用Rose自定义的拦截器接口可以更容易地操作、控制Rose拦截。
  * 所谓拦截即是对已经匹配的控制器调用进行拦截，在其调用之前、之后以及页面渲染之后执行某些逻辑。设计良好的拦截器可以被多个控制器使用。
- * <p/>
- * <p/>
+ * <P>
+ * 
  * <strong>控制器</strong>: <br>
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  */
 public class RoseFilter extends GenericFilterBean {
 
     private static final String ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE = WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE;
 
-    /**
-     * 使用的applicationContext地址
-     */
+    /** 使用的applicationContext地址 */
     private String contextConfigLocation;
 
     private InstructionExecutor instructionExecutor = new InstructionExecutorImpl();
@@ -156,9 +160,9 @@ public class RoseFilter extends GenericFilterBean {
 
     private LoadScope load = new LoadScope("", "controllers");
 
-    private IgnoredPath[] ignoredPaths = new IgnoredPath[]{
+    private IgnoredPath[] ignoredPaths = new IgnoredPath[] {
             new IgnoredPathStarts(RoseConstants.VIEWS_PATH_WITH_END_SEP),
-            new IgnoredPathEquals("/favicon.ico")};
+            new IgnoredPathEquals("/favicon.ico") };
 
     /**
      * 改变默认行为，告知Rose要读取的applicationContext地址
@@ -187,7 +191,7 @@ public class RoseFilter extends GenericFilterBean {
      * <pre>
      * like: &quot;com.renren.myapp, com.renren.yourapp&quot; etc
      * </pre>
-     *
+     * 
      * @param load
      */
     public void setLoad(String load) {
@@ -195,8 +199,8 @@ public class RoseFilter extends GenericFilterBean {
     }
 
     /**
-     * @param ignoredPathStrings
      * @see #quicklyPass(RequestPath)
+     * @param ignoredPathStrings
      */
     public void setIgnoredPaths(String[] ignoredPathStrings) {
         List<IgnoredPath> list = new ArrayList<IgnoredPath>(ignoredPathStrings.length + 2);
@@ -301,7 +305,7 @@ public class RoseFilter extends GenericFilterBean {
      */
     @Override
     public void doFilter(ServletRequest request, final ServletResponse response,
-                         final FilterChain filterChain) throws IOException, ServletException {
+            final FilterChain filterChain) throws IOException, ServletException {
         // cast
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
         final HttpServletResponse httpResponse = (HttpServletResponse) response;
@@ -370,7 +374,7 @@ public class RoseFilter extends GenericFilterBean {
     /**
      * 创建最根级别的 ApplicationContext 对象，比如WEB-INF、WEB-INF/classes、
      * jar中的spring配置文件所组成代表的、整合为一个 ApplicationContext 对象
-     *
+     * 
      * @return
      * @throws IOException
      */
@@ -482,7 +486,7 @@ public class RoseFilter extends GenericFilterBean {
 
     /**
      * 简单、快速判断本次请求，如果不应由Rose执行，返回true
-     *
+     * 
      * @param requestPath
      * @return
      */
@@ -520,10 +524,10 @@ public class RoseFilter extends GenericFilterBean {
     }
 
     protected void notMatched(//
-                              FilterChain filterChain, //
-                              HttpServletRequest httpRequest,//
-                              HttpServletResponse httpResponse,//
-                              RequestPath path)//
+            FilterChain filterChain, //
+            HttpServletRequest httpRequest,//
+            HttpServletResponse httpResponse,//
+            RequestPath path)//
             throws IOException, ServletException {
         if (logger.isDebugEnabled()) {
             logger.debug("not rose uri: " + path.getUri());

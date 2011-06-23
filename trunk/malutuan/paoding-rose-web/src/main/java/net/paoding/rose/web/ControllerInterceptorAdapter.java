@@ -15,21 +15,22 @@
  */
 package net.paoding.rose.web;
 
-import net.paoding.rose.web.advancedinterceptor.ActionSelector;
-import net.paoding.rose.web.advancedinterceptor.DispatcherSelector;
-import net.paoding.rose.web.advancedinterceptor.Named;
-import net.paoding.rose.web.advancedinterceptor.Ordered;
-import net.paoding.rose.web.impl.thread.AfterCompletion;
-import net.paoding.rose.web.instruction.Instruction;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
+
+import net.paoding.rose.web.advancedinterceptor.ActionSelector;
+import net.paoding.rose.web.advancedinterceptor.DispatcherSelector;
+import net.paoding.rose.web.advancedinterceptor.Named;
+import net.paoding.rose.web.advancedinterceptor.Ordered;
+import net.paoding.rose.web.impl.thread.AfterCompletion;
+import net.paoding.rose.web.instruction.Instruction;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * @author 王志亮 [qieqie.wang@gmail.com]
@@ -110,12 +111,12 @@ public class ControllerInterceptorAdapter implements Named, Ordered, ControllerI
      * 在调用控制器方法前调用。如果返回true(或者null)表示继续下一个拦截器；<br>
      * 返回其他的表示不再调用剩余的拦截器以及action，并按返回的指示执行结果(进行页面渲染或其他 )
      * {@link Instruction}向请求发送响应(可以是用字符串表示的指示对象)。
-     * <p/>
+     * <p>
      * 在一个拦截器链条中，如果某一个拦截器拒绝了整个调用链条，其它还没拦截的拦截器将不再会进行拦截，但是之前已经拦截过的拦截器，
      * 还将分别调用它们的{@link #after(Invocation, Object)}和
      * {@link #afterCompletion(Invocation, Throwable)}方法拦截。
-     * <p/>
-     *
+     * <p>
+     * 
      * @param inv
      * @return
      * @throws Exception
@@ -125,6 +126,7 @@ public class ControllerInterceptorAdapter implements Named, Ordered, ControllerI
     }
 
     /**
+     * 
      * @param inv
      * @param chain
      * @return
@@ -136,10 +138,10 @@ public class ControllerInterceptorAdapter implements Named, Ordered, ControllerI
 
     /**
      * 在调用控制器方法后调用。也有可能是之后拦截器拒绝了该流程，回退过来调用到先前调用的拦截器的本方法。
-     * <p/>
+     * <p>
      * 返回null或原来的instruction表示不改变控制器的返回结果。<br>
      * 返回另外的对象表示改变这个返回行为。这非常有用，或许通过拦截器能够将一个返回的对象转化为另外的对象以输出给请求着
-     *
+     * 
      * @param inv
      * @param instruction
      * @return
@@ -182,9 +184,9 @@ public class ControllerInterceptorAdapter implements Named, Ordered, ControllerI
 
     /**
      * 返回false，表示控制器或其方法没有标注本拦截器所要求的注解
-     *
+     * 
      * @param controllerClazz 控制器类
-     * @param actionMethod    控制器处理方法
+     * @param actionMethod 控制器处理方法
      * @return
      */
     protected final boolean checkRequiredAnnotations(Class<?> controllerClazz, Method actionMethod) {
@@ -247,7 +249,7 @@ public class ControllerInterceptorAdapter implements Named, Ordered, ControllerI
 
     /**
      * 用 BitSet 的形式返回标注的作用域。
-     *
+     * 
      * @param annotationType
      * @return
      */
@@ -257,7 +259,7 @@ public class ControllerInterceptorAdapter implements Named, Ordered, ControllerI
 
     /**
      * 返回true，表示控制器或其方法标注了“拒绝”注解
-     *
+     * 
      * @param controllerClazz
      * @param actionMethod
      * @return
@@ -302,7 +304,10 @@ public class ControllerInterceptorAdapter implements Named, Ordered, ControllerI
      * 根据此方法的返回结果，{@link #checkRequiredAnnotations(Class, Method)}/
      * {@link #checkDenyAnnotations(Class, Method)}
      * 在判断到该annotation时，返回true/false；<br>
-     *
+     * 
+     * 
+     * 
+     * 
      * @param annotation
      * @return
      */

@@ -17,15 +17,17 @@ package net.paoding.rose.web.impl.mapping;
 
 /**
  * {@link MappingPattern} 封装字符串的匹配规则，不同的 {@link MatchMode} 匹配规则不一样
- *
- * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  * @see MatchMode
+ * 
+ * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface MappingPattern {
 
     /**
      * 返回匹配结果,返回空表示不能匹配
-     *
+     * 
      * @param path
      * @return
      */

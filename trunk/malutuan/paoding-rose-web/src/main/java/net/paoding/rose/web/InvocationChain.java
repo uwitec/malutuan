@@ -17,14 +17,14 @@ package net.paoding.rose.web;
 
 /**
  * 开发者用于实现拦截器时，将控制流程交给下一个拦截器或最终的控制器方法
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  */
 public interface InvocationChain {
 
     /**
      * 将控制流程交给下一个拦截器，并获取下一个拦截器或最终的控制器方法返回的指示
-     *
+     * 
      * @return
      * @throws Exception
      */

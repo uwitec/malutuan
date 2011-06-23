@@ -18,13 +18,15 @@ package net.paoding.rose.web.advancedinterceptor;
 import net.paoding.rose.web.Dispatcher;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface DispatcherSelector {
 
     /**
      * 当所分配请求是所给的类型时(普通请求、FORWARD请求、INCLUDE请求)，是否执行此拦截器？
-     *
+     * 
      * @return
      */
     boolean isForDispatcher(Dispatcher dispatcher);

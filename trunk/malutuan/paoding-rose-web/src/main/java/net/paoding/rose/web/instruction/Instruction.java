@@ -15,17 +15,21 @@
  */
 package net.paoding.rose.web.instruction;
 
-import net.paoding.rose.web.Invocation;
-
-import javax.servlet.ServletException;
 import java.io.IOException;
 
+import javax.servlet.ServletException;
+
+import net.paoding.rose.web.Invocation;
+
 /**
+ * 
  * @author zhiliang.wang
+ * 
  */
 public interface Instruction {
 
     /**
+     * 
      * @param inv
      * @throws IOException
      * @throws ServletException

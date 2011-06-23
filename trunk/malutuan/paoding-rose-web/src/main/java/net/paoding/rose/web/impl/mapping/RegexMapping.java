@@ -19,13 +19,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class RegexMapping implements Mapping {
 
-    /**
-     * 该映射代表的结点
-     */
+    /** 该映射代表的结点 */
     private MappingNode mappingNode;
 
     private final String definition;

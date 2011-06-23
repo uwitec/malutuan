@@ -15,18 +15,22 @@
  */
 package net.paoding.rose.web.annotation;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 import net.paoding.rose.web.ControllerErrorHandler;
 import net.paoding.rose.web.paramresolver.ParamResolver;
-
-import java.lang.annotation.*;
 
 /**
  * 使用 {@link NotForSubModules} 标注在编写在模块目录中的拦截器、错误处理器
  * {@link ControllerErrorHandler}、 参数解析器 {@link ParamResolver} 上，表示不应用到子模块
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  */
-@Target({ElementType.TYPE})
+@Target( { ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface NotForSubModules {

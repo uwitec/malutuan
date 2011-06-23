@@ -25,7 +25,7 @@ public interface ParamResolver {
 
     /**
      * 返回true表示是由本解析器负责解析这种类型的参数.
-     *
+     * 
      * @param metaData
      * @return
      */

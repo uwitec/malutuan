@@ -16,25 +16,23 @@
 package net.paoding.rose.web.impl.mapping;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class MatchResultImpl implements MatchResult {
 
-    /**
-     * 结果字符串
-     */
+    /** 结果字符串 */
     private String value;
 
     private MappingNode mappingNode;
 
-    /**
-     * 从结果字符串中得到的资源参数名(如果该资源使用了使用了参数化的映射地址)
-     */
+    /** 从结果字符串中得到的资源参数名(如果该资源使用了使用了参数化的映射地址) */
     private String parameterName;
 
     /**
      * 创建新的匹配结果对象
-     *
+     * 
      * @param value 匹配结果字符串
      */
     public MatchResultImpl(MappingNode mappingNode, String value) {

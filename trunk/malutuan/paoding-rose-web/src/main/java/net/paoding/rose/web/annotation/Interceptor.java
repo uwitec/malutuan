@@ -15,14 +15,19 @@
  */
 package net.paoding.rose.web.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * 使用 {@link Interceptor} 标注一个控制器拦截器的名字以及其他设置
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.TYPE, ElementType.FIELD})
+@Target( { ElementType.TYPE, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Interceptor {
@@ -36,7 +41,7 @@ public @interface Interceptor {
 
     /**
      * 对用户的每一个请求，只执行一次拦截？
-     *
+     * 
      * @return
      */
     boolean oncePerRequest() default false;

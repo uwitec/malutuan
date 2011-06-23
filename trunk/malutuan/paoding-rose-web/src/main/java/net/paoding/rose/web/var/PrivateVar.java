@@ -15,19 +15,20 @@
  */
 package net.paoding.rose.web.var;
 
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 /**
  * 仅仅提供Rose框架内部使用，外部程序请勿调用.
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  */
 public final class PrivateVar {
@@ -39,9 +40,9 @@ public final class PrivateVar {
 
     /**
      * 获取当前Web应用的根Spring上下文环境.
-     * <p/>
+     * <p>
      * 所谓根Spring上下文环境的对象都可以应用到各个module中.
-     *
+     * 
      * @return
      */
     public static WebApplicationContext getRootWebApplicationContext(ServletContext servletContext) {
@@ -62,6 +63,7 @@ public final class PrivateVar {
     }
 
     /**
+     * 
      * @param name
      * @return
      */

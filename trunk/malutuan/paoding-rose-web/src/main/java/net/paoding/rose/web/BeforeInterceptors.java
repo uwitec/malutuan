@@ -18,12 +18,14 @@ package net.paoding.rose.web;
 /**
  * 如果控制器action方法的参数对象实现了 {@link BeforeInterceptors}接口，Rose将拦截所有拦截器之前，调用
  * {@link #doBeforeInterceptors(Invocation)}方法
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface BeforeInterceptors {
 
     /**
+     * 
      * @param inv
      * @param instruction
      * @throws Exception

@@ -15,6 +15,11 @@
  */
 package net.paoding.rose.web.impl.thread;
 
+import java.lang.reflect.InvocationTargetException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
 import net.paoding.rose.RoseConstants;
 import net.paoding.rose.util.SpringUtils;
 import net.paoding.rose.util.StackTraceSimplifier;
@@ -24,6 +29,7 @@ import net.paoding.rose.web.annotation.MultipartCleanup;
 import net.paoding.rose.web.annotation.NotForSubModules;
 import net.paoding.rose.web.annotation.SuppressMultipartResolver;
 import net.paoding.rose.web.impl.module.Module;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
@@ -35,32 +41,24 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import java.lang.reflect.InvocationTargetException;
-
 /**
  * {@link ModuleEngine} 负责从表示的模块中找出可匹配的 控制器引擎 {@link ControllerEngine}
  * 并委托其返回匹配的 {@link ActionEngine}对象，最终构成 {@link InvocationBean}对象返回.
- * <p/>
+ * <p>
  * {@link ModuleEngine}能够从失败控制器引擎匹配中走出来，继续匹配下一个控制器引擎，找到最终的
  * {@link ActionEngine}对象。即，如果一个匹配的控制器引擎中没有匹配的 {@link ActionEngine}对象，
  * {@link ModuleEngine}能够自动到下一个匹配的{@link ControllerEngine}对象去判断.
- * <p/>
- *
+ * <p>
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @author Li Weibo[weibo.leo@gmail.com]
  */
 public class ModuleEngine implements Engine {
 
-    /**
-     * 日志对象
-     */
+    /** 日志对象 */
     private static Log logger = LogFactory.getLog(ModuleEngine.class);
 
-    /**
-     * 模块对象
-     */
+    /** 模块对象 */
     private final Module module;
 
     private final MultipartResolver multipartResolver;
@@ -69,7 +67,7 @@ public class ModuleEngine implements Engine {
 
     /**
      * 构造能够正确匹配出到所给模块请求的控制器和方法的引擎，返回到相应 {@link InvocationBean}对象的模块引擎.
-     *
+     * 
      * @param module
      * @throws NullPointerException 如果所传入的模块为空时
      */
@@ -83,16 +81,15 @@ public class ModuleEngine implements Engine {
 
     /**
      * 由构造子调用，创建给定模块对象的控制器引擎对象
-     *
+     * 
      * @param module
      * @return
      */
 
     // ---------------------------------------------------------------------
-
     /**
      * 返回所包含模块对象
-     *
+     * 
      * @return
      */
     public Module getModule() {
@@ -157,7 +154,7 @@ public class ModuleEngine implements Engine {
                 // 
                 HttpServletRequest request = rose.getInvocation().getRequest();
                 WebUtils.exposeErrorRequestAttributes(request, cause, null);
-                StackTraceSimplifier.simplify(cause);    //对栈进行简化
+                StackTraceSimplifier.simplify(cause);	//对栈进行简化
                 instruction = errorHandler.onError(rose.getInvocation(), cause);
             }
 
@@ -216,7 +213,7 @@ public class ModuleEngine implements Engine {
 
     /**
      * Clean up any resources used by the given multipart request (if any).
-     *
+     * 
      * @see MultipartResolver#cleanupMultipart
      */
     protected void cleanupMultipart(Invocation inv) {

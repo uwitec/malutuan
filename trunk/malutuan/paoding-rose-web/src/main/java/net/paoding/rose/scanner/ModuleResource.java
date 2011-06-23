@@ -24,10 +24,11 @@ import java.util.List;
  * 一个web模块资源。 xxx.controllers 是一个模块资源 ， xxx.controllers.subpkg
  * 是另外一个模块资源。极端情况下，不同jar文件可能具有相同的 xxx.controllers
  * 包，rose会将他们进行区分，称为2个URL地址不同的web模块资源。
- * <p/>
+ * <p>
  * rose使用web模块资源用来构造web模块。
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ModuleResource implements Comparable<ModuleResource> {
 
@@ -173,6 +174,6 @@ public class ModuleResource implements Comparable<ModuleResource> {
         return "ModuleResource[" + mappingPath + "=" + moduleUrl + "] " //
                 + "size of (class, ctx, messagesBasename) = (" + moduleClasses.size() //
                 + ", " + contextResources.size() + ", " + messageBasenames.size() + ")"//
-                ;
+        ;
     }
 }

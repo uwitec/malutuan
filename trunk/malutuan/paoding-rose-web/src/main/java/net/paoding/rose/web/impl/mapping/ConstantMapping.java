@@ -19,14 +19,10 @@ import net.paoding.rose.util.RoseStringUtil;
 
 public class ConstantMapping implements Mapping {
 
-    /**
-     * 该映射代表的结点
-     */
+    /** 该映射代表的结点 */
     private MappingNode mappingNode;
 
-    /**
-     * 规范化的地址定义
-     */
+    /** 规范化的地址定义 */
     private final String definition;
 
     public ConstantMapping(String definition) {

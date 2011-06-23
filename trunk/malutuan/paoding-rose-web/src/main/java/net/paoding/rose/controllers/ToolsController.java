@@ -15,6 +15,15 @@
  */
 package net.paoding.rose.controllers;
 
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import net.paoding.rose.scanning.ResourceRef;
 import net.paoding.rose.scanning.RoseScanner;
 import net.paoding.rose.web.InterceptorDelegate;
@@ -34,16 +43,10 @@ import net.paoding.rose.web.impl.thread.InvocationBean;
 import net.paoding.rose.web.impl.thread.LinkedEngine;
 import net.paoding.rose.web.impl.thread.Rose;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 @Path("")
 public class ToolsController {
@@ -243,10 +246,10 @@ public class ToolsController {
     }
 
     /**
+     * @see #method(Invocation)
      * @param engines
      * @param request
      * @return
-     * @see #method(Invocation)
      */
     private LinkedEngine select(LinkedEngine[] engines, HttpServletRequest request) {
         LinkedEngine selectedEngine = null;
@@ -263,10 +266,10 @@ public class ToolsController {
     }
 
     /**
+     * @see #tree(Rose)
      * @param node
      * @param prefix
      * @param sb
-     * @see #tree(Rose)
      */
     private void printNode(final MappingNode node, String prefix, StringBuilder sb) {
         sb.append("<node path=\"").append(prefix + node.getMappingPath()).append("\">");

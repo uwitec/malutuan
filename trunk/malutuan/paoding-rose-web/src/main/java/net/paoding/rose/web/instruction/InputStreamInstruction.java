@@ -15,18 +15,22 @@
  */
 package net.paoding.rose.web.instruction;
 
-import net.paoding.rose.web.Invocation;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+
+import net.paoding.rose.web.Invocation;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
+ * 
  * @author zhiliang.wang
+ * 
  */
 public class InputStreamInstruction extends AbstractInstruction {
 

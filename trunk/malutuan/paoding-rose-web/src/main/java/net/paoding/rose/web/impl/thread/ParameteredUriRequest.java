@@ -15,12 +15,21 @@
  */
 package net.paoding.rose.web.impl.thread;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.NoSuchElementException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import java.util.*;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ParameteredUriRequest extends HttpServletRequestWrapper {
 
@@ -47,7 +56,7 @@ public class ParameteredUriRequest extends HttpServletRequestWrapper {
         Map<String, String[]> map = new HashMap<String, String[]>(super.getParameterMap());
         for (Map.Entry<String, String> entry : parameters.entrySet()) {
             if (!map.containsKey(entry.getKey())) {
-                map.put(entry.getKey(), new String[]{parameters.get(entry.getKey())});
+                map.put(entry.getKey(), new String[] { parameters.get(entry.getKey()) });
             }
         }
         return Collections.unmodifiableMap(map);
@@ -59,7 +68,7 @@ public class ParameteredUriRequest extends HttpServletRequestWrapper {
         if (value == null || value.length == 0) {
             String _value = parameters.get(name);
             if (_value != null) {
-                value = new String[]{_value};
+                value = new String[] { _value };
             }
         }
         // javadoc: 

@@ -15,23 +15,28 @@
  */
 package net.paoding.rose.web.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * 将{@link FlashParam}标注在控制器方法的参数上，重定向之前的的信息.
- * <p/>
- *
+ * <p>
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.PARAMETER})
+@Target( { ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface FlashParam {
 
     /**
      * 声明要从Flash对象获取的参数的名字；
-     * <p/>
-     *
+     * <p>
+     * 
      * @return
      */
     String value();

@@ -15,17 +15,20 @@
  */
 package net.paoding.rose.web;
 
+import java.lang.reflect.Method;
+
 import net.paoding.rose.web.advancedinterceptor.ActionSelector;
 import net.paoding.rose.web.advancedinterceptor.DispatcherSelector;
 import net.paoding.rose.web.advancedinterceptor.Named;
 import net.paoding.rose.web.advancedinterceptor.Ordered;
 import net.paoding.rose.web.impl.thread.AfterCompletion;
+
 import org.springframework.util.Assert;
 
-import java.lang.reflect.Method;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class InterceptorDelegate implements Ordered, Named, ControllerInterceptor, AfterCompletion,
         ActionSelector, DispatcherSelector, Comparable<InterceptorDelegate> {

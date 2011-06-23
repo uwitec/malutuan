@@ -23,6 +23,7 @@ package net.paoding.rose.web.paramresolver;
 public interface ResolverFactory {
 
     /**
+     * 
      * @param paramMetaData
      * @return
      */

@@ -18,10 +18,13 @@ package net.paoding.rose.controllers;
 import net.paoding.rose.RoseVersion;
 import net.paoding.rose.web.ControllerInterceptorAdapter;
 import net.paoding.rose.web.Invocation;
+
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class RoseToolsInterceptor extends ControllerInterceptorAdapter {
 

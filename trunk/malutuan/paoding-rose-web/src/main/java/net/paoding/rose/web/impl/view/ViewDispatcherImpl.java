@@ -15,9 +15,20 @@
  */
 package net.paoding.rose.web.impl.view;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+
 import net.paoding.rose.util.SpringUtils;
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.impl.view.velocity.RoseVelocityConfigurer;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -37,18 +48,10 @@ import org.springframework.web.servlet.view.velocity.VelocityConfig;
 import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ViewDispatcherImpl implements ViewDispatcher, ApplicationContextAware {
 
@@ -226,7 +229,7 @@ public class ViewDispatcherImpl implements ViewDispatcher, ApplicationContextAwa
     }
 
     private VelocityViewResolver createVelocityViewResolver(Invocation inv, String beanName,
-                                                            String layoutUrl) throws MalformedURLException, IOException {
+            String layoutUrl) throws MalformedURLException, IOException {
         if (SpringUtils.getBean(getApplicationContext(), VelocityConfig.class) == null) {
             URL propertiesLocation = inv.getServletContext().getResource(
                     "/WEB-INF/velocity.properties");

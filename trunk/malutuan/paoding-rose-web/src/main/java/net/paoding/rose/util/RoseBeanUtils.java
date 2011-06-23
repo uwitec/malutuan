@@ -18,9 +18,10 @@ package net.paoding.rose.util;
 
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.BeanUtils;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class RoseBeanUtils extends BeanUtils {
 

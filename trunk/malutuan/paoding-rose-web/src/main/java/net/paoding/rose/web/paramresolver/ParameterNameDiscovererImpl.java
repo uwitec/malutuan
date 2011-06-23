@@ -15,21 +15,28 @@
  */
 package net.paoding.rose.web.paramresolver;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import net.paoding.rose.web.annotation.FlashParam;
 import net.paoding.rose.web.annotation.Param;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.ClassUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.util.*;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ParameterNameDiscovererImpl {
 
@@ -79,10 +86,10 @@ public class ParameterNameDiscovererImpl {
                 counts.put(rawName, count + 1);
                 if (count == 1) {
                     for (int j = 0; j < i; j++) {
-                        if (names[j] != null && names[j].equals(rawName)) {
-                            names[j] = rawName + "1";
-                            break;
-                        }
+						if (names[j] != null && names[j].equals(rawName)) {
+							names[j] = rawName + "1";
+							break;
+						}
                     }
                 }
                 if (names[i] == rawName) {

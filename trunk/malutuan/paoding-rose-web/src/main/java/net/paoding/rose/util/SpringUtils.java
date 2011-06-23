@@ -15,15 +15,15 @@
  */
 package net.paoding.rose.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author 王志亮 [qieqie.wang@gmail.com]

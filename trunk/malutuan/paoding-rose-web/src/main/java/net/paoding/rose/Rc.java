@@ -15,17 +15,17 @@
  */
 package net.paoding.rose;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.InvocationUtils;
 import net.paoding.rose.web.var.PrivateVar;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * {@link Rc} 将1.0版本被删除， 请在控制器方法中声明 {@link Invocation} inv 代替完成对{@link Rc}
  * 的使用
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @since 0.9
  */
@@ -36,7 +36,7 @@ public class Rc {
 
     /**
      * 返回绑定到当前线程的请求对象.
-     *
+     * 
      * @return
      * @throws NullPointerException 如果当前线程中没有绑定请求对象时
      */
@@ -46,7 +46,7 @@ public class Rc {
 
     /**
      * 在控制器中调用此方法，返回当前的HTTP响应对象
-     *
+     * 
      * @return
      * @throws NullPointerException 如果当前线程中没有绑定请求对象时
      */
@@ -56,7 +56,7 @@ public class Rc {
 
     /**
      * 获取本次绑定到当前线程的请求当前时刻的 {@link Invocation}对象.
-     *
+     * 
      * @return
      * @throws NullPointerException 如果当前线程中没有绑定请求对象时
      * @see PrivateVar#getInvocation()

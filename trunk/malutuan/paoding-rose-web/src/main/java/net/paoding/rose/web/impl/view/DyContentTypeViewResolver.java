@@ -15,14 +15,16 @@
  */
 package net.paoding.rose.web.impl.view;
 
+import java.util.Locale;
+
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.AbstractView;
 
-import java.util.Locale;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class DyContentTypeViewResolver implements ViewResolver {
 

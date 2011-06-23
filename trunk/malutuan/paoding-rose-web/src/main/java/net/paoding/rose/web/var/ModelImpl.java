@@ -15,17 +15,24 @@
  */
 package net.paoding.rose.web.var;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import net.paoding.rose.util.PlaceHolderUtils;
 import net.paoding.rose.web.Invocation;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.Conventions;
 import org.springframework.util.Assert;
 
-import java.util.*;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ModelImpl implements Model {
 

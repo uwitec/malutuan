@@ -15,11 +15,11 @@
  */
 package net.paoding.rose.web.impl.thread;
 
+import java.lang.reflect.Method;
+
 import net.paoding.rose.web.AfterInterceptors;
 import net.paoding.rose.web.ControllerInterceptorAdapter;
 import net.paoding.rose.web.Invocation;
-
-import java.lang.reflect.Method;
 
 /**
  * @author 王志亮 [qieqie.wang@gmail.com]
@@ -32,12 +32,12 @@ public class AfterInterceptorsInterceptor extends ControllerInterceptorAdapter {
 
     @Override
     protected boolean isForAction(Method actionMethod, Class<?> controllerClazz) {
-        for (Class<?> clazz : actionMethod.getParameterTypes()) {
+    	for (Class<?> clazz :actionMethod.getParameterTypes()) {
             if (AfterInterceptors.class.isAssignableFrom(clazz)) {
                 return true;
             }
         }
-        return false;
+    	return false;
     }
 
     @Override

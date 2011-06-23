@@ -15,26 +15,31 @@
  */
 package net.paoding.rose.web.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * 标注 {@link Path}设置对控制器的自定义映射规则。
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.TYPE})
+@Target( { ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Path {
 
     /**
      * 设定哪些路径应由所在控制器处理，可以设置多个。
-     * <p/>
+     * <p>
      * 可以在设置中使用不限制个数的${xx}，并结合 {@link Param}标注使用 。 路径是否以'/'开头不做区别。
-     * <p/>
-     * <p/>
+     * <p>
+     * 
      * 特别的，如果不想让一个控制器生效，除了使用@Ignored外(推荐)，还可以使用@Path({}),即使用零长度数组来实现.
-     *
+     * 
      * @return
      */
     String[] value();

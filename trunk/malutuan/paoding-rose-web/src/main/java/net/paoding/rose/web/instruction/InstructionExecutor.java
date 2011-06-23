@@ -18,7 +18,9 @@ package net.paoding.rose.web.instruction;
 import net.paoding.rose.web.Invocation;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface InstructionExecutor {
 

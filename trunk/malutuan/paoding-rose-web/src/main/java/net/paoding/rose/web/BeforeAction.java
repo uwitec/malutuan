@@ -18,12 +18,14 @@ package net.paoding.rose.web;
 /**
  * 如果控制器action方法的参数对象实现了 {@link BeforeAction}接口，Rose将在调用所在action方法之前，调用
  * {@link #doBeforeAction(Invocation)}方法
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface BeforeAction {
 
     /**
+     * 
      * @param inc
      * @param instruction
      * @throws Exception

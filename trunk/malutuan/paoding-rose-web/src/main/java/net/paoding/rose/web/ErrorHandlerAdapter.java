@@ -18,7 +18,9 @@ package net.paoding.rose.web;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ErrorHandlerAdapter implements ControllerErrorHandler {
 

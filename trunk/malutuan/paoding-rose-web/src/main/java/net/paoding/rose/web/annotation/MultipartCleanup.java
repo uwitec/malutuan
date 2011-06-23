@@ -15,21 +15,25 @@
  */
 package net.paoding.rose.web.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.METHOD})
+@Target( { ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface MultipartCleanup {
 
     public enum After {
         CONTROLLER_INVOCATION, REQUEST_COMPLETION
-    }
-
-    ;
+    };
 
     After after() default After.CONTROLLER_INVOCATION;
 }

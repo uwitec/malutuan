@@ -16,12 +16,12 @@
 package net.paoding.rose.util;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class Empty {
 
-    /**
-     * 长度为零字符串
-     */
+    /** 长度为零字符串 */
     public final static String[] STRING_ARRAY = new String[0];
 }
