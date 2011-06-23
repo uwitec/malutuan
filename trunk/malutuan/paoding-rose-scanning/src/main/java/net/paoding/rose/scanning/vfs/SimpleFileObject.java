@@ -15,14 +15,20 @@
  */
 package net.paoding.rose.scanning.vfs;
 
-import org.springframework.util.ResourceUtils;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.springframework.util.ResourceUtils;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class SimpleFileObject implements FileObject {
 

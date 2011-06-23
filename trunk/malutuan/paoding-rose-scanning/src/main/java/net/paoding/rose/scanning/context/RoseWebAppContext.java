@@ -15,8 +15,14 @@
 */
 package net.paoding.rose.scanning.context;
 
+import java.io.IOException;
+import java.util.Arrays;
+
+import javax.servlet.ServletContext;
+
 import net.paoding.rose.scanning.LoadScope;
 import net.paoding.rose.scanning.context.core.RoseResources;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.BeanFactoryUtils;
@@ -31,19 +37,15 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.core.io.Resource;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 
-import javax.servlet.ServletContext;
-import java.io.IOException;
-import java.util.Arrays;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @author han.liao [in355hz@gmail.com]
+ * 
  */
 public class RoseWebAppContext extends XmlWebApplicationContext {
 
-    /**
-     * Default config location for the root context
-     */
+    /** Default config location for the root context */
     public static final String DEFAULT_CONFIG_LOCATION = "/WEB-INF/applicationContext*.xml";
 
     private LoadScope scope;
@@ -66,8 +68,9 @@ public class RoseWebAppContext extends XmlWebApplicationContext {
 
     /**
      * 返回对应类型的唯一 Bean, 包括可能的祖先 {@link ApplicationContext} 中对应类型的 Bean.
-     *
+     * 
      * @param beanType - Bean 的类型
+     * 
      * @throws BeansException
      */
     public <T> T getBean(Class<T> beanType) throws BeansException {
@@ -98,7 +101,7 @@ public class RoseWebAppContext extends XmlWebApplicationContext {
      * "/WEB-INF/applicationContext*.xml".
      */
     protected String[] getDefaultConfigLocations() {
-        return new String[]{RoseWebAppContext.DEFAULT_CONFIG_LOCATION};
+        return new String[] { RoseWebAppContext.DEFAULT_CONFIG_LOCATION };
     }
 
     @Override
@@ -113,7 +116,7 @@ public class RoseWebAppContext extends XmlWebApplicationContext {
 
     /**
      * Rose对BeanFactory的特殊处理，必要时可以覆盖这个方法去掉Rose的特有的处理
-     *
+     * 
      * @throws IOException
      */
     protected void prepareBeanFactoryByRose(ConfigurableListableBeanFactory beanFactory)
@@ -153,11 +156,9 @@ public class RoseWebAppContext extends XmlWebApplicationContext {
 
     }
 
-    /**
-     * 如果配置文件没有自定义的messageSource定义，则由Rose根据最佳实践进行预设
-     */
+    /** 如果配置文件没有自定义的messageSource定义，则由Rose根据最佳实践进行预设 */
     public static void registerMessageSourceIfNecessary(BeanDefinitionRegistry registry,
-                                                        String[] messageBaseNames) {
+            String[] messageBaseNames) {
         if (!registry.containsBeanDefinition(MESSAGE_SOURCE_BEAN_NAME)) {
             GenericBeanDefinition messageSource = new GenericBeanDefinition();
             messageSource.setBeanClass(ReloadableResourceBundleMessageSource.class);

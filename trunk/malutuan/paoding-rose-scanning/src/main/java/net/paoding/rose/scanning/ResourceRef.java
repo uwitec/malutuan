@@ -15,6 +15,14 @@
  */
 package net.paoding.rose.scanning;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Properties;
+import java.util.jar.Attributes;
+import java.util.jar.JarFile;
+import java.util.jar.Manifest;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -26,15 +34,9 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.util.Assert;
 import org.springframework.util.ResourceUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Properties;
-import java.util.jar.Attributes;
-import java.util.jar.JarFile;
-import java.util.jar.Manifest;
-
 /**
+ * 
+ * 
  * @author zhiliang.wang 王志亮 [qieqie.wang@gmail.com]
  */
 public class ResourceRef implements Comparable<ResourceRef> {
@@ -73,7 +75,7 @@ public class ResourceRef implements Comparable<ResourceRef> {
         //
         if (modifiers == null) {
             if (!"jar".equals(rr.getProtocol())) {
-                modifiers = new String[]{"**"};
+                modifiers = new String[] { "**" };
                 if (logger.isDebugEnabled()) {
                     logger.debug("modifiers[by default][" + rr.getResource().getURI() + "]="
                             + Arrays.toString(modifiers));
@@ -163,7 +165,7 @@ public class ResourceRef implements Comparable<ResourceRef> {
     }
 
     public Resource[] getInnerResources(ResourcePatternResolver resourcePatternResolver,
-                                        String subPath) throws IOException {
+            String subPath) throws IOException {
         subPath = getInnerResourcePattern(subPath);
         return resourcePatternResolver.getResources(subPath);
     }

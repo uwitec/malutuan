@@ -15,8 +15,6 @@
  */
 package net.paoding.rose.scanning.vfs;
 
-import org.springframework.util.ResourceUtils;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,8 +25,12 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import org.springframework.util.ResourceUtils;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class JarFileObject implements FileObject {
 
