@@ -19,7 +19,9 @@ import net.paoding.rose.RoseConstants;
 import net.paoding.rose.web.Invocation;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PortalUtils {
 

@@ -21,7 +21,9 @@ import net.paoding.rose.web.InvocationChain;
 import net.paoding.rose.web.portal.PortalUtils;
 
 /**
+ * 
  * @author qieqie.wang@gmail.com
+ * 
  */
 public class WindowCancelableSupportInterceptor extends ControllerInterceptorAdapter {
 

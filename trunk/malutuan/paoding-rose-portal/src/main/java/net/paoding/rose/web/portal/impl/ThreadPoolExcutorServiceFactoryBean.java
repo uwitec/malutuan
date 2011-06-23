@@ -15,39 +15,39 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import org.springframework.beans.factory.FactoryBean;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import org.springframework.beans.factory.FactoryBean;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
 /**
  * 此类用于配置在spring文件中，使获取Spring的 {@link ThreadPoolTaskExecutor} 的内部 {@link ExecutorService}对象
+ * @author  王志亮 [qieqie.wang@gmail.com]
  *
- * @author 王志亮 [qieqie.wang@gmail.com]
  */
 public class ThreadPoolExcutorServiceFactoryBean implements FactoryBean {
 
-    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+	
+	public void setThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+		this.threadPoolTaskExecutor = threadPoolTaskExecutor;
+	}
+	
+	@Override
+	public Object getObject() throws Exception {
+		return threadPoolTaskExecutor.getThreadPoolExecutor();
+	}
 
-    public void setThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
-        this.threadPoolTaskExecutor = threadPoolTaskExecutor;
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class getObjectType() {
+		return ThreadPoolExecutor.class;
+	}
 
-    @Override
-    public Object getObject() throws Exception {
-        return threadPoolTaskExecutor.getThreadPoolExecutor();
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public Class getObjectType() {
-        return ThreadPoolExecutor.class;
-    }
-
-    @Override
-    public boolean isSingleton() {
-        return true;
-    }
+	@Override
+	public boolean isSingleton() {
+		return true;
+	}
 
 }

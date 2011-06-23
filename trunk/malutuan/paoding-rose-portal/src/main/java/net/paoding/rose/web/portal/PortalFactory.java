@@ -15,21 +15,22 @@
  */
 package net.paoding.rose.web.portal;
 
-import net.paoding.rose.web.Invocation;
-
 import java.io.IOException;
+
+import net.paoding.rose.web.Invocation;
 
 /**
  * {@link PortalFactory} 是 portal/pipe 框架的核心，它负责创建 {@link Portal} /
  * {@link Pipe} 对象.
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface PortalFactory {
 
     /**
      * 创建给定请求的 {@link Portal} 实例
-     *
+     * 
      * @param inv
      * @return
      */
@@ -37,7 +38,7 @@ public interface PortalFactory {
 
     /**
      * 创建给定请求的 {@link Pipe} 实例
-     *
+     * 
      * @param portal
      * @return
      * @throws IOException

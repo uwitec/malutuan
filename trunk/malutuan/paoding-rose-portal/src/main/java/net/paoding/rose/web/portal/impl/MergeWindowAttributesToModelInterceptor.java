@@ -21,7 +21,9 @@ import net.paoding.rose.web.portal.PortalUtils;
 import net.paoding.rose.web.portal.Window;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class MergeWindowAttributesToModelInterceptor extends ControllerInterceptorAdapter {
 

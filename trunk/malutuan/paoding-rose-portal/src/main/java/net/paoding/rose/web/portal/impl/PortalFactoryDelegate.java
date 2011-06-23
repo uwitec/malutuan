@@ -19,12 +19,15 @@ import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.portal.Pipe;
 import net.paoding.rose.web.portal.Portal;
 import net.paoding.rose.web.portal.PortalFactory;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PortalFactoryDelegate implements PortalFactory, ApplicationContextAware {
 

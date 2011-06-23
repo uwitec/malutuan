@@ -15,10 +15,6 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.Portal;
-import net.paoding.rose.web.portal.Window;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Collections;
@@ -26,13 +22,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Future;
 
+import javax.servlet.http.HttpServletResponse;
+
+import net.paoding.rose.web.portal.Portal;
+import net.paoding.rose.web.portal.Window;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 class WindowImpl implements Window {
 
     private static boolean defaultMayInterruptIfRunning = false;
-
     static {
         String pv;
         try {

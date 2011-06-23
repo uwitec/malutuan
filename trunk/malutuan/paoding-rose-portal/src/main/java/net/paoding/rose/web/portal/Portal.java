@@ -18,11 +18,12 @@ package net.paoding.rose.web.portal;
 /**
  * {@link WindowContainer}
  * 两种类型的其中一种，用于在服务端为一个请求并发请求多个窗口时，并把窗口的页面合并后一并送给客户端。
- * <p/>
- * <p/>
+ * 
+ * <p>
  * 详细文档，请见 {@link WindowContainer}
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface Portal extends WindowContainer {
 

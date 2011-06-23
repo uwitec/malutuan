@@ -16,7 +16,9 @@
 package net.paoding.rose.web.portal;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ *
  */
 public interface WindowCallback {
 

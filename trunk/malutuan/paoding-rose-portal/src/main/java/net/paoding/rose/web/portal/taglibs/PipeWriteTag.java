@@ -15,20 +15,24 @@
  */
 package net.paoding.rose.web.portal.taglibs;
 
-import net.paoding.rose.web.Invocation;
-import net.paoding.rose.web.InvocationUtils;
-import net.paoding.rose.web.portal.PortalUtils;
-import net.paoding.rose.web.portal.impl.PipeImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-import java.io.IOException;
+
+import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.InvocationUtils;
+import net.paoding.rose.web.portal.PortalUtils;
+import net.paoding.rose.web.portal.impl.PipeImpl;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 
 public class PipeWriteTag extends TagSupport {

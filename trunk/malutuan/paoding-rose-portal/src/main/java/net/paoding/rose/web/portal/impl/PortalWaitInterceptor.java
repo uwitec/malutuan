@@ -15,13 +15,6 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.ControllerInterceptorAdapter;
-import net.paoding.rose.web.Invocation;
-import net.paoding.rose.web.portal.Portal;
-import net.paoding.rose.web.portal.PortalUtils;
-import net.paoding.rose.web.portal.Window;
-import net.paoding.rose.web.portal.WindowListener;
-
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,10 +24,18 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import net.paoding.rose.web.ControllerInterceptorAdapter;
+import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.portal.Portal;
+import net.paoding.rose.web.portal.PortalUtils;
+import net.paoding.rose.web.portal.Window;
+import net.paoding.rose.web.portal.WindowListener;
+
 /**
  * 这个拦截器只拦截 Portal 控制器方法，用于等待所有该 portal 的窗口执行完成或进行超时取消。
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PortalWaitInterceptor extends ControllerInterceptorAdapter {
 

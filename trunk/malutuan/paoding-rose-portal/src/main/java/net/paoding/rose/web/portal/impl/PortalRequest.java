@@ -15,9 +15,11 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import net.paoding.rose.web.portal.Portal;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletInputStream;
@@ -26,16 +28,17 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
+
+import net.paoding.rose.web.portal.Portal;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * 封装Portal的请求对象，使能够支持并发执行窗口请求
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 final class PortalRequest extends HttpServletRequestWrapper implements HttpServletRequest {
 
@@ -43,7 +46,7 @@ final class PortalRequest extends HttpServletRequestWrapper implements HttpServl
 
     /**
      * 取出包装在里面的PortalRequest
-     *
+     * 
      * @param request
      * @return
      */
@@ -59,20 +62,19 @@ final class PortalRequest extends HttpServletRequestWrapper implements HttpServl
         } while (true);
     }
 
-    /**
-     * 本次 portal
-     */
+    /** 本次 portal */
     private Portal portal;
 
     private HttpServletRequest orginal;
 
     /**
-     * * 保存本次 portal 请求的窗口请求对象 (由容器调用setRequest设置进来)
+     ** 保存本次 portal 请求的窗口请求对象 (由容器调用setRequest设置进来)
      */
     private ThreadLocal<HttpServletRequest> threadLocalRequests = new ThreadLocal<HttpServletRequest>();
 
     /**
      * 构造子
+     * 
      */
     public PortalRequest(Portal portal, HttpServletRequest orginal) {
         super(new PrivateRequestWrapper(orginal));
@@ -82,8 +84,8 @@ final class PortalRequest extends HttpServletRequestWrapper implements HttpServl
 
     /**
      * 设置一个请求对象到这个包装器中， {@link PortalRequest} 将把这个请求对象关联给当前线程。
-     * <p/>
-     * <p/>
+     * <p>
+     * 
      * 这个方法将由web容器(tomcat/resin等)调用
      */
     public void setRequest(ServletRequest request) {

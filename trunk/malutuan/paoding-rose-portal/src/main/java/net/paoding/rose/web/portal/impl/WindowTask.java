@@ -15,17 +15,19 @@
  */
 package net.paoding.rose.web.portal.impl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.concurrent.ExecutorService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import java.util.concurrent.ExecutorService;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * {@link WindowTask} 把一个窗口任务进行封装，使可以提交到 {@link ExecutorService} 执行。
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 final class WindowTask implements Runnable {
 

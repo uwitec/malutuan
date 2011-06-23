@@ -16,18 +16,25 @@
  */
 package net.paoding.rose.web.portal.util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * Adapter class that wraps an <code>Enumeration</code> around a Java2
  * collection classes object <code>Iterator</code> so that existing APIs
  * returning Enumerations can easily run on top of the new collections.
  * Constructors are provided to easliy create such wrappers.
- *
+ * 
  * @author Craig R. McClanahan
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @version $Revision: 467222 $ $Date: 2006-10-24 05:17:11 +0200 (Tue, 24
  *          Oct 2006) $
+ * 
  */
 
 public final class Enumerator<T> implements Enumeration<T> {
@@ -36,7 +43,7 @@ public final class Enumerator<T> implements Enumeration<T> {
 
     /**
      * Return an Enumeration over the values of the specified Collection.
-     *
+     * 
      * @param collection Collection whose values should be enumerated
      */
     public Enumerator(Collection<? extends T> collection) {
@@ -47,9 +54,9 @@ public final class Enumerator<T> implements Enumeration<T> {
 
     /**
      * Return an Enumeration over the values of the specified Collection.
-     *
+     * 
      * @param collection Collection whose values should be enumerated
-     * @param clone      true to clone iterator
+     * @param clone true to clone iterator
      */
     public Enumerator(Collection<? extends T> collection, boolean clone) {
 
@@ -60,7 +67,7 @@ public final class Enumerator<T> implements Enumeration<T> {
     /**
      * Return an Enumeration over the values returned by the specified
      * Iterator.
-     *
+     * 
      * @param iterator Iterator to be wrapped
      */
     public Enumerator(Iterator<? extends T> iterator) {
@@ -73,9 +80,9 @@ public final class Enumerator<T> implements Enumeration<T> {
     /**
      * Return an Enumeration over the values returned by the specified
      * Iterator.
-     *
+     * 
      * @param iterator Iterator to be wrapped
-     * @param clone    true to clone iterator
+     * @param clone true to clone iterator
      */
     public Enumerator(Iterator<? extends T> iterator, boolean clone) {
 
@@ -94,7 +101,7 @@ public final class Enumerator<T> implements Enumeration<T> {
 
     /**
      * Return an Enumeration over the values of the specified Map.
-     *
+     * 
      * @param map Map whose values should be enumerated
      */
     public Enumerator(Map<?, ? extends T> map) {
@@ -104,8 +111,8 @@ public final class Enumerator<T> implements Enumeration<T> {
 
     /**
      * Return an Enumeration over the values of the specified Map.
-     *
-     * @param map   Map whose values should be enumerated
+     * 
+     * @param map Map whose values should be enumerated
      * @param clone true to clone iterator
      */
     public Enumerator(Map<?, ? extends T> map, boolean clone) {
@@ -125,7 +132,7 @@ public final class Enumerator<T> implements Enumeration<T> {
 
     /**
      * Tests if this enumeration contains more elements.
-     *
+     * 
      * @return <code>true</code> if and only if this enumeration object
      *         contains at least one more element to provide,
      *         <code>false</code> otherwise
@@ -137,9 +144,10 @@ public final class Enumerator<T> implements Enumeration<T> {
     /**
      * Returns the next element of this enumeration if this enumeration has
      * at least one more element to provide.
-     *
+     * 
      * @return the next element of this enumeration
-     * @throws NoSuchElementException if no more elements exist
+     * 
+     * @exception NoSuchElementException if no more elements exist
      */
     public T nextElement() throws NoSuchElementException {
 
