@@ -20,7 +20,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class MappingFactory {
 
@@ -161,7 +163,7 @@ public class MappingFactory {
     }
 
     private static Mapping createConstantMapping(//
-                                                 String userDefinedMapping, int constantBegin, int i) {
+            String userDefinedMapping, int constantBegin, int i) {
         if (constantBegin == i) {
             throw new IllegalArgumentException(userDefinedMapping + "  constantBegin="
                     + constantBegin);
@@ -170,7 +172,7 @@ public class MappingFactory {
     }
 
     private static Mapping createRegexMapping(//
-                                              String userDefinedMapping, int paramBegin, int paramNameEnd, int i) {
+            String userDefinedMapping, int paramBegin, int paramNameEnd, int i) {
         final String rawName = userDefinedMapping.substring(paramBegin,
                 paramNameEnd >= 0 ? paramNameEnd : i);
         if (rawName.length() == 0) {

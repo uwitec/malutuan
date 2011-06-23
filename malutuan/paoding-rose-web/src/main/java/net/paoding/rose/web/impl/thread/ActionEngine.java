@@ -15,33 +15,49 @@
  */
 package net.paoding.rose.web.impl.thread;
 
+import static org.springframework.validation.BindingResult.MODEL_KEY_PREFIX;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import net.paoding.rose.RoseVersion;
 import net.paoding.rose.util.RoseStringUtil;
-import net.paoding.rose.web.*;
+import net.paoding.rose.web.ControllerInterceptor;
+import net.paoding.rose.web.InterceptorDelegate;
+import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.InvocationChain;
+import net.paoding.rose.web.ParamValidator;
+import net.paoding.rose.web.RequestPath;
 import net.paoding.rose.web.annotation.HttpFeatures;
 import net.paoding.rose.web.annotation.IfParamExists;
 import net.paoding.rose.web.annotation.Intercepted;
 import net.paoding.rose.web.annotation.Return;
 import net.paoding.rose.web.impl.module.Module;
 import net.paoding.rose.web.impl.validation.ParameterBindingResult;
-import net.paoding.rose.web.paramresolver.*;
+import net.paoding.rose.web.paramresolver.MethodParameterResolver;
+import net.paoding.rose.web.paramresolver.ParamMetaData;
+import net.paoding.rose.web.paramresolver.ParamResolver;
+import net.paoding.rose.web.paramresolver.ParameterNameDiscovererImpl;
+import net.paoding.rose.web.paramresolver.ResolverFactoryImpl;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.SpringVersion;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
-import static org.springframework.validation.BindingResult.MODEL_KEY_PREFIX;
 
 /**
  * @author 王志亮 [qieqie.wang@gmail.com]
@@ -198,7 +214,7 @@ public final class ActionEngine implements Engine {
 
     /**
      * 用来抽象与{@link IfParamExists}相对应的判断逻辑
-     *
+     * 
      * @author Li Weibo (weibo.leo@gmail.com)
      */
     private static interface ParamExistenceChecker {
@@ -208,7 +224,7 @@ public final class ActionEngine implements Engine {
 
     /**
      * 初始化的时候来决定所有的判断条件，并抽象为{@link ParamExistenceChecker}数组
-     *
+     * 
      * @return
      */
     private ParamExistenceChecker[] compileParamExistenceChecker() {
@@ -216,7 +232,7 @@ public final class ActionEngine implements Engine {
         IfParamExists ifParamExists = method.getAnnotation(IfParamExists.class);
         //没标注IfParamExists或者标注了IfParamExists("")都认为不作检查
         if (ifParamExists == null || ifParamExists.value().trim().length() == 0) {
-            return new ParamExistenceChecker[]{};
+            return new ParamExistenceChecker[] {};
         }
 
         List<ParamExistenceChecker> checkers = new ArrayList<ParamExistenceChecker>(); //所有判断条件的列表
@@ -312,7 +328,7 @@ public final class ActionEngine implements Engine {
                 }
             }
         }
-        return checkers.toArray(new ParamExistenceChecker[]{});
+        return checkers.toArray(new ParamExistenceChecker[] {});
     }
 
     @Override
@@ -361,7 +377,7 @@ public final class ActionEngine implements Engine {
     private void mapPut(Map<String, String[]> map, String key, String value) {
         String[] values = map.get(key);
         if (values == null) {
-            values = new String[]{value};
+            values = new String[] { value };
         } else {
             values = Arrays.copyOf(values, values.length + 1);
             values[values.length - 1] = value;
@@ -416,7 +432,7 @@ public final class ActionEngine implements Engine {
                 }
             }
         }
-
+        
         //
         for (int i = 0; i < parameterNames.length; i++) {
             if (parameterNames[i] != null && methodParameters[i] != null

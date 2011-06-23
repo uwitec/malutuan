@@ -15,19 +15,30 @@
  */
 package net.paoding.rose.web.impl.mapping;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import net.paoding.rose.util.PrinteHelper;
 import net.paoding.rose.web.annotation.ReqMethod;
 import net.paoding.rose.web.impl.module.ControllerRef;
 import net.paoding.rose.web.impl.module.MethodRef;
 import net.paoding.rose.web.impl.module.Module;
-import net.paoding.rose.web.impl.thread.*;
+import net.paoding.rose.web.impl.thread.ActionEngine;
+import net.paoding.rose.web.impl.thread.ControllerEngine;
+import net.paoding.rose.web.impl.thread.Engine;
+import net.paoding.rose.web.impl.thread.LinkedEngine;
+import net.paoding.rose.web.impl.thread.ModuleEngine;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.util.*;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class TreeBuilder {
 
@@ -77,7 +88,7 @@ public class TreeBuilder {
     }
 
     private void addController(Module module, MappingNode moduleNode, LinkedEngine moduleEngine,
-                               ControllerRef controller) {
+            ControllerRef controller) {
         //
         Engine engine = new ControllerEngine(module, controller);
 
@@ -111,7 +122,7 @@ public class TreeBuilder {
     }
 
     private void addAction(Module module, ControllerRef controller, MethodRef action,
-                           MappingNode controllerNode, LinkedEngine controllerEngine) {
+            MappingNode controllerNode, LinkedEngine controllerEngine) {
         Map<String, Set<ReqMethod>> mappingPaths = action.getMappings();
         if (mappingPaths.size() == 0) {
             return;
@@ -145,7 +156,7 @@ public class TreeBuilder {
 
     /**
      * 检查整个树的状况，尽可能报告可能存在的问题
-     *
+     * 
      * @param tree
      * @param parent
      * @param prefix

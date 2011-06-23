@@ -15,6 +15,14 @@
 */
 package net.paoding.rose.web.impl.module;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,15 +40,10 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 
-import javax.servlet.ServletContext;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ModuleAppContext extends XmlWebApplicationContext {
 
@@ -49,7 +52,7 @@ public class ModuleAppContext extends XmlWebApplicationContext {
     //
 
     public static ModuleAppContext createModuleContext(WebApplicationContext parent, //
-                                                       List<URL> contextResources, String[] messageBasenames, String uniqueId, String namespace)
+            List<URL> contextResources, String[] messageBasenames, String uniqueId, String namespace)
             throws IOException {
 
         long startTime = System.currentTimeMillis();
@@ -133,9 +136,7 @@ public class ModuleAppContext extends XmlWebApplicationContext {
         super.prepareBeanFactory(beanFactory);
     }
 
-    /**
-     * Rose对BeanFactory的特殊处理，必要时可以覆盖这个方法去掉Rose的特有的处理
-     */
+    /** Rose对BeanFactory的特殊处理，必要时可以覆盖这个方法去掉Rose的特有的处理 */
     protected void prepareBeanFactoryByRose(ConfigurableListableBeanFactory beanFactory) {
         BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
         AnnotationConfigUtils.registerAnnotationConfigProcessors(registry);
@@ -144,11 +145,9 @@ public class ModuleAppContext extends XmlWebApplicationContext {
         }
     }
 
-    /**
-     * 如果配置文件没有自定义的messageSource定义，则由Rose根据最佳实践进行预设
-     */
+    /** 如果配置文件没有自定义的messageSource定义，则由Rose根据最佳实践进行预设 */
     public static void registerMessageSourceIfNecessary(BeanDefinitionRegistry registry,
-                                                        String[] messageBaseNames) {
+            String[] messageBaseNames) {
         if (!ArrayUtils.contains(registry.getBeanDefinitionNames(), MESSAGE_SOURCE_BEAN_NAME)) {
             logger.debug("registerMessageSource  " + ArrayUtils.toString(messageBaseNames));
             GenericBeanDefinition messageSource = new GenericBeanDefinition();

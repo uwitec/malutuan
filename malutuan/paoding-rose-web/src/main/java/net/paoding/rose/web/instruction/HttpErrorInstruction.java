@@ -16,10 +16,12 @@
 package net.paoding.rose.web.instruction;
 
 import net.paoding.rose.web.Invocation;
+
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @author Li Weibo[weibo.leo@gmail.com]
  */
@@ -28,7 +30,7 @@ public class HttpErrorInstruction extends AbstractInstruction {
     @Override
     public void doRender(Invocation inv) throws Exception {
         String message = resolvePlaceHolder(this.message, inv);
-        message = StringEscapeUtils.escapeHtml(message);    //输出到页面之前对HTML转义，防止XSS注入
+        message = StringEscapeUtils.escapeHtml(message);	//输出到页面之前对HTML转义，防止XSS注入
         if (StringUtils.isEmpty(message)) {
             inv.getResponse().sendError(code);
         } else {

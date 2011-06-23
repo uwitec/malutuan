@@ -15,14 +15,17 @@
  */
 package net.paoding.rose.web.instruction;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.RequestPath;
 
-import javax.servlet.ServletException;
-import java.io.IOException;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ForwardInstruction extends AbstractInstruction {
 

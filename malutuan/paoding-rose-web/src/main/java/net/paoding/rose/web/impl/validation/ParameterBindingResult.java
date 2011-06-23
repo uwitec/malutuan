@@ -16,13 +16,15 @@
 package net.paoding.rose.web.impl.validation;
 
 import net.paoding.rose.web.Invocation;
+
 import org.springframework.util.Assert;
 import org.springframework.validation.AbstractBindingResult;
 
 /**
  * 控制器action方法普通参数绑定信息类，
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ParameterBindingResult extends AbstractBindingResult {
 
@@ -33,6 +35,7 @@ public class ParameterBindingResult extends AbstractBindingResult {
     private transient Invocation inv;
 
     /**
+     * 
      * @param inv
      */
     public ParameterBindingResult(Invocation inv) {
@@ -47,6 +50,7 @@ public class ParameterBindingResult extends AbstractBindingResult {
     }
 
     /**
+     * 
      * @throws IllegalStateException 在反序列化后调用
      */
     @Override

@@ -15,6 +15,16 @@
  */
 package net.paoding.rose.web.instruction;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import net.paoding.rose.RoseConstants;
 import net.paoding.rose.util.SpringUtils;
 import net.paoding.rose.web.Invocation;
@@ -22,6 +32,7 @@ import net.paoding.rose.web.impl.thread.InvocationBean;
 import net.paoding.rose.web.impl.view.ViewDispatcher;
 import net.paoding.rose.web.impl.view.ViewDispatcherImpl;
 import net.paoding.rose.web.impl.view.ViewPathCache;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,20 +43,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * {@link ViewInstruction} 实现 {@link Instruction}接口，调用 {@link ViewResolver}
  * 渲染页面
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ViewInstruction extends AbstractInstruction {
 
@@ -87,10 +90,11 @@ public class ViewInstruction extends AbstractInstruction {
     }
 
     /**
+     * 
      * @param inv
      * @param viewName 大多数情况viewName应该是一个普通字符串 (e.g:
-     *                 index)，也可能是index.jsp带后缀的字符串，
-     *                 可能是一个带有/开头的绝对路径地址，可能是类似template/default这样的地址
+     *        index)，也可能是index.jsp带后缀的字符串，
+     *        可能是一个带有/开头的绝对路径地址，可能是类似template/default这样的地址
      * @return
      * @throws IOException
      */
@@ -145,6 +149,7 @@ public class ViewInstruction extends AbstractInstruction {
     }
 
     /**
+     * 
      * @param inv
      * @param viewPathCache
      * @param viewName
@@ -152,7 +157,7 @@ public class ViewInstruction extends AbstractInstruction {
      * @throws IOException
      */
     private String getViewPathFromCache(InvocationBean inv, ViewPathCache viewPathCache,
-                                        final String viewName) throws IOException {
+            final String viewName) throws IOException {
         String viewPath = viewPathCache.getViewPath(viewName);
         if (viewPath != null) {
             return viewPath;
@@ -225,7 +230,7 @@ public class ViewInstruction extends AbstractInstruction {
 
     /**
      * 优先获取大小写敏感的路径，如若找不到，则获取忽略大小写后的路径
-     *
+     * 
      * @param tempHome
      * @param subDirPath
      * @return
@@ -261,13 +266,14 @@ public class ViewInstruction extends AbstractInstruction {
     }
 
     /**
+     * 
      * @param fileNameToFind
      * @param directoryFile
      * @param ignoreCase
      * @return
      */
     private String searchViewFile(File directoryFile, final String fileNameToFind,
-                                  final boolean ignoreCase) {
+            final boolean ignoreCase) {
         String[] viewFiles = directoryFile.list(new FilenameFilter() {
 
             @Override
@@ -309,7 +315,7 @@ public class ViewInstruction extends AbstractInstruction {
 
     /**
      * 注册一个 {@link ViewDispatcher}定义到上下文中，以被这个类的所有实例使用
-     *
+     * 
      * @return
      */
     protected ViewDispatcher registerViewDispatcher(WebApplicationContext applicationContext) {

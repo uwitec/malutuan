@@ -17,12 +17,14 @@ package net.paoding.rose.web;
 
 /**
  * 声明在 {@link ControllerErrorHandler}的实现类，引用上级的错误处理器
- *
+ * 
  * @author zhiliang.wang
+ * 
  */
 public interface ParentErrorHandler {
 
     /**
+     * 
      * @param ex
      * @return
      */

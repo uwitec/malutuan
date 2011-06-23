@@ -15,13 +15,15 @@
  */
 package net.paoding.rose.web.impl.thread;
 
-import net.paoding.rose.web.impl.module.ControllerRef;
-import net.paoding.rose.web.impl.module.Module;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.lang.reflect.Proxy;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Proxy;
+
+import net.paoding.rose.web.impl.module.ControllerRef;
+import net.paoding.rose.web.impl.module.Module;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * @author 王志亮 [qieqie.wang@gmail.com]

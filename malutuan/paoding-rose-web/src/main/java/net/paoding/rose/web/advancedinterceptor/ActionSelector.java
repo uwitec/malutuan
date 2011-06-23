@@ -18,13 +18,15 @@ package net.paoding.rose.web.advancedinterceptor;
 import java.lang.reflect.Method;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface ActionSelector {
 
     /**
      * 作为候选拦截器，这个拦截器是否应拦截所指的控制器及其方法？
-     *
+     * 
      * @param controllerClazz
      * @param actionMethod
      * @return

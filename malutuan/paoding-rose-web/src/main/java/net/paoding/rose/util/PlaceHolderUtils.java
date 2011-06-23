@@ -16,6 +16,7 @@
 package net.paoding.rose.util;
 
 import net.paoding.rose.web.Invocation;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,15 +24,16 @@ import org.springframework.beans.BeanWrapperImpl;
 
 /**
  * 用于识别识别${xxx}串或识别${xxx?}串，并进行替换的工具类
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class PlaceHolderUtils {
 
     // 以下这些final都是约定好的，不可随意改变。写成final只是为了不到处写字符串而已。
-
+    
     public static final String DOLLAR = "$";
-
+    
     public static final String PLACEHOLDER_PREFIX = "${";
 
     public static final char PLACEHOLDER_INNER_PREFIX = '{';

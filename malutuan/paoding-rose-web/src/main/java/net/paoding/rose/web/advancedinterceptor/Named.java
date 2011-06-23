@@ -16,16 +16,19 @@
 package net.paoding.rose.web.advancedinterceptor;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-public interface Named {
+public interface Named  {
 
     /**
-     *
+     * 
      */
     public void setName(String name);
 
     /**
+     * 
      * @return
      */
     public String getName();

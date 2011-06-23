@@ -15,13 +15,16 @@
  */
 package net.paoding.rose.web.paramresolver;
 
-import net.paoding.rose.web.paramresolver.ResolverFactoryImpl.DateEditor;
-import org.springframework.beans.SimpleTypeConverter;
-
 import java.util.Date;
 
+import net.paoding.rose.web.paramresolver.ResolverFactoryImpl.DateEditor;
+
+import org.springframework.beans.SimpleTypeConverter;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class SafedTypeConverterFactory {
 

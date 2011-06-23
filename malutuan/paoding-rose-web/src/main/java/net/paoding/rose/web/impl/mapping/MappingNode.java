@@ -15,52 +15,43 @@
  */
 package net.paoding.rose.web.impl.mapping;
 
+import java.util.ArrayList;
+
 import net.paoding.rose.web.RequestPath;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.util.ArrayList;
-
 /**
  * {@link MappingNode}代表匹配树的一个结点，树的结点能够包含一个或多个被称为资源的 {@link EngineGroup} 对象
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class MappingNode implements Comparable<MappingNode> {
 
     protected static final Log logger = LogFactory.getLog(MappingNode.class);
 
-    /**
-     * 所使用的映射
-     */
+    /** 所使用的映射 */
     private final Mapping mapping;
 
-    /**
-     * 最左子结点
-     */
+    /** 最左子结点 */
     private MappingNode leftMostChild;
 
-    /**
-     * 右兄弟结点
-     */
+    /** 右兄弟结点 */
     private MappingNode sibling;
 
-    /**
-     * 子节点是变量参数映射的数目
-     */
+    /** 子节点是变量参数映射的数目 */
     private int ammountOfRegexChildren = -1;
 
-    /**
-     * 叶子引擎: 只有含有叶子引擎的结点才能处理对应地址的请求
-     */
+    /** 叶子引擎: 只有含有叶子引擎的结点才能处理对应地址的请求 */
     private final EngineGroup leafEngines = new EngineGroupImpl();
 
-    /**
-     * 中间引擎：
-     */
+    /** 中间引擎： */
     private final EngineGroup middleEngines = new EngineGroupImpl();
 
     /**
+     * 
      * @param mapping
      */
     public MappingNode(Mapping mapping) {
@@ -230,7 +221,7 @@ public class MappingNode implements Comparable<MappingNode> {
     }
 
     /**
-     *
+     * 
      */
     public void destroy() {
         this.leafEngines.destroy();

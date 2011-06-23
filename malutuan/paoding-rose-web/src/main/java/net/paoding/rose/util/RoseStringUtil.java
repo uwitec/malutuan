@@ -59,7 +59,7 @@ public class RoseStringUtil {
 
     /**
      * 支持'*'前后的匹配
-     *
+     * 
      * @param array
      * @param value
      * @return

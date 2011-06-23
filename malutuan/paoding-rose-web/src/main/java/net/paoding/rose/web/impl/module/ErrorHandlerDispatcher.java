@@ -15,11 +15,6 @@
  */
 package net.paoding.rose.web.impl.module;
 
-import net.paoding.rose.web.ControllerErrorHandler;
-import net.paoding.rose.web.Invocation;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -27,8 +22,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import net.paoding.rose.web.ControllerErrorHandler;
+import net.paoding.rose.web.Invocation;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
+ * 
  * @author zhiliang.wang
+ * 
  */
 public class ErrorHandlerDispatcher implements ControllerErrorHandler {
 
@@ -64,7 +67,7 @@ public class ErrorHandlerDispatcher implements ControllerErrorHandler {
 
                         @Override
                         public Object onError(Invocation inv, Throwable ex) throws Throwable {
-                            Object[] args = new Object[]{inv, ex};
+                            Object[] args = new Object[] { inv, ex };
                             try {
                                 return method
                                         .invoke(ErrorHandlerDispatcher.this.errorHandler, args);

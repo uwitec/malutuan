@@ -15,6 +15,15 @@
 */
 package net.paoding.rose.web.impl.thread;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import net.paoding.rose.web.Dispatcher;
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.InvocationUtils;
@@ -24,16 +33,15 @@ import net.paoding.rose.web.impl.mapping.EngineGroup;
 import net.paoding.rose.web.impl.mapping.MappingNode;
 import net.paoding.rose.web.impl.mapping.MatchResult;
 import net.paoding.rose.web.impl.module.Module;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.*;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class Rose implements EngineChain {
 
@@ -62,7 +70,7 @@ public class Rose implements EngineChain {
     private final LinkedList<AfterCompletion> afterCompletions = new LinkedList<AfterCompletion>();
 
     public Rose(List<Module> modules, MappingNode mappingTree, HttpServletRequest httpRequest,
-                HttpServletResponse httpResponse, RequestPath requestPath) {
+            HttpServletResponse httpResponse, RequestPath requestPath) {
         this.mappingTree = mappingTree;
         this.modules = modules;
         this.originalHttpRequest = httpRequest;
@@ -89,7 +97,7 @@ public class Rose implements EngineChain {
     /**
      * 启动rose逻辑，对请求进行匹配判断，如果匹配未能成功返回false； <br>
      * 对匹配成功的启动相关的架构处理逻辑直至整个请求的完成
-     *
+     * 
      * @return
      * @throws Throwable
      */

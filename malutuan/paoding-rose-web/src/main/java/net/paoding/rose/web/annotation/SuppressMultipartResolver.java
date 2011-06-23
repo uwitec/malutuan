@@ -15,17 +15,24 @@
  */
 package net.paoding.rose.web.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
+ * 
  * 标注 {@link SuppressMultipartResolver} 在方法上，能够压制rose自动进行上传解析。这用于两种情况：
  * 1）如有必要可forward给另外的控制器方法解析.<br>
  * 2）开发者想要有更自由的解析以及时间点控制(对于后者可以，开发者可以在方法中声明 MultipartResolver 获取到解析器)
- * <p/>
- *
+ * <p>
+ * 
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.METHOD})
+@Target( { ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface SuppressMultipartResolver {

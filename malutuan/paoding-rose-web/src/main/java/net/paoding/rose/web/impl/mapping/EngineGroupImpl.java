@@ -15,35 +15,38 @@
  */
 package net.paoding.rose.web.impl.mapping;
 
-import net.paoding.rose.web.annotation.ReqMethod;
-import net.paoding.rose.web.impl.thread.Engine;
-import net.paoding.rose.web.impl.thread.LinkedEngine;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import net.paoding.rose.web.annotation.ReqMethod;
+import net.paoding.rose.web.impl.thread.Engine;
+import net.paoding.rose.web.impl.thread.LinkedEngine;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
+ * 
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class EngineGroupImpl implements EngineGroup {
 
     private static final Log logger = LogFactory.getLog(EngineGroup.class);
 
-    /**
-     * ARRAY_SIZE 代表用于存放 Engine 的数组的大小
-     */
+    /** ARRAY_SIZE 代表用于存放 Engine 的数组的大小 */
     private static final int ARRAY_SIZE = ReqMethod.ALL.parse().size();
 
     private static final LinkedEngine[] emptyEngines = new LinkedEngine[0];
 
     /**
      * 该资源支持的操作逻辑，如果不支持某种操作对应位置的元素为长度为0的engines数组
-     * <p/>
+     * <p>
      * 处理指定http method的逻辑存放于该本数组的指定的、唯一位置，即 {@link ReqMethod#ordinal()}
+     * 
      */
     private final LinkedEngine[][] engines;
 
@@ -66,7 +69,7 @@ public class EngineGroupImpl implements EngineGroup {
 
     /**
      * 添加一个 {@link Engine} ；如果所给的 method 是 {@link ReqMethod#ALL}，则优先级最低。
-     *
+     * 
      * @param method
      * @param engine
      */
@@ -74,7 +77,7 @@ public class EngineGroupImpl implements EngineGroup {
         for (ReqMethod md : method.parse()) {
             LinkedEngine[] methodEngines = engines[md.ordinal()];
             if (methodEngines.length == 0) {
-                methodEngines = new LinkedEngine[]{engine};
+                methodEngines = new LinkedEngine[] { engine };
             } else {
                 methodEngines = Arrays.copyOf(methodEngines, methodEngines.length + 1);
                 methodEngines[methodEngines.length - 1] = engine;
@@ -92,9 +95,9 @@ public class EngineGroupImpl implements EngineGroup {
 
     /**
      * 返回处理这个资源的处理逻辑，如果该资源不支持该操作方法返回长度为0的数组。
-     *
+     * 
      * @param method 除 {@link ReqMethod#ALL} 外的其他 {@link ReqMethod}
-     *               实例；可以为null
+     *        实例；可以为null
      * @return
      */
     @Override
@@ -110,7 +113,7 @@ public class EngineGroupImpl implements EngineGroup {
 
     /**
      * 本资源是否支持此操作?
-     *
+     * 
      * @param method
      * @return
      */

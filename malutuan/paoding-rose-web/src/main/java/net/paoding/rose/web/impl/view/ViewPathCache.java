@@ -15,12 +15,14 @@
  */
 package net.paoding.rose.web.impl.view;
 
-import net.paoding.rose.RoseConstants;
-
 import java.util.HashMap;
 
+import net.paoding.rose.RoseConstants;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ViewPathCache {
 

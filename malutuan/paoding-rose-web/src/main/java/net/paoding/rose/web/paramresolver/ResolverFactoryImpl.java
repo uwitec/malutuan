@@ -16,14 +16,46 @@
  */
 package net.paoding.rose.web.paramresolver;
 
+import java.beans.PropertyEditorSupport;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import net.paoding.rose.util.RoseBeanUtils;
 import net.paoding.rose.web.Invocation;
-import net.paoding.rose.web.annotation.*;
+import net.paoding.rose.web.annotation.Create;
+import net.paoding.rose.web.annotation.DefValue;
+import net.paoding.rose.web.annotation.FlashParam;
+import net.paoding.rose.web.annotation.Param;
+import net.paoding.rose.web.annotation.Pattern;
 import net.paoding.rose.web.impl.module.Module;
 import net.paoding.rose.web.impl.thread.InvocationBean;
 import net.paoding.rose.web.impl.thread.Rose;
 import net.paoding.rose.web.var.Flash;
 import net.paoding.rose.web.var.Model;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -43,19 +75,6 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.beans.PropertyEditorSupport;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 /**
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @author Weibo Li[weibo.leo@gmail.com]
@@ -68,7 +87,6 @@ public class ResolverFactoryImpl implements ResolverFactory {
 
     private static final Map<Class<?>, Class<?>> primitiveWrapperTypeMap = new HashMap<Class<?>, Class<?>>(
             8);
-
     static {
         primitiveWrapperTypeMap.put(boolean.class, Boolean.class);
         primitiveWrapperTypeMap.put(byte.class, Byte.class);
@@ -81,7 +99,6 @@ public class ResolverFactoryImpl implements ResolverFactory {
     }
 
     private static final Map<Class<?>, Class<?>> arrayTypeMap = new HashMap<Class<?>, Class<?>>();
-
     static {
         arrayTypeMap.put(boolean.class, Boolean.class);
         arrayTypeMap.put(byte.class, byte[].class);
@@ -102,8 +119,8 @@ public class ResolverFactoryImpl implements ResolverFactory {
         arrayTypeMap.put(Short.class, Short[].class);
     }
 
-    private static final ParamResolver[] buildinResolvers = new ParamResolver[]{//
-            new InvocationResolver(), //
+    private static final ParamResolver[] buildinResolvers = new ParamResolver[] {//
+    new InvocationResolver(), //
             new RoseResolver(), //
             new ApplicationContextResolver(), //
             new MessageSourceResolver(), //
@@ -644,7 +661,7 @@ public class ResolverFactoryImpl implements ResolverFactory {
             return List.class == metaData.getParamType()
                     || Collection.class == metaData.getParamType()
                     || (!Modifier.isAbstract(metaData.getParamType().getModifiers()) && List.class
-                    .isAssignableFrom(metaData.getParamType()));
+                            .isAssignableFrom(metaData.getParamType()));
         }
 
         @Override
@@ -664,7 +681,7 @@ public class ResolverFactoryImpl implements ResolverFactory {
         public boolean innerSupports(ParamMetaData metaData) {
             return Set.class == metaData.getParamType()
                     || (!Modifier.isAbstract(metaData.getParamType().getModifiers()) && Set.class
-                    .isAssignableFrom(metaData.getParamType()));
+                            .isAssignableFrom(metaData.getParamType()));
         }
 
         @Override

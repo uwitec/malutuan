@@ -15,18 +15,21 @@
  */
 package net.paoding.rose.web.impl.mapping;
 
-import net.paoding.rose.util.RoseStringUtil;
-
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.paoding.rose.util.RoseStringUtil;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public enum MatchMode {
 
     STARTS_WITH {
+
         public MappingPattern compile(final String conf, boolean regex) {
             if (regex) {
                 return new MappingPattern() {
@@ -70,6 +73,7 @@ public enum MatchMode {
     },
 
     EQUALS {
+
         @Override
         public MappingPattern compile(final String conf, boolean regex) {
             if (regex) {
@@ -120,6 +124,7 @@ public enum MatchMode {
     };
 
     /**
+     * 
      * @param conf
      * @param regex
      * @return

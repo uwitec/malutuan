@@ -15,19 +15,24 @@
  */
 package net.paoding.rose.web.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * 标注成为{@link AsSuperController}的类，他的方法可以作为直接继承类(子类)控制器的action被使用。
- * <p/>
+ * <p>
  * 如果一个类A标注了{@link AsSuperController}，但是他的一个子类B没有标注
  * {@link AsSuperController} ，如果这个子类的子类C是一个控制器，刚才标注了
  * {@link AsSuperController}的类A的方法仍旧不能作为action方法暴露出来。 <br>
  * 但是如果类B标注了{@link AsSuperController}，则类A和B的方法将暴露给类C作为action方法。
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.TYPE})
+@Target( { ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface AsSuperController {

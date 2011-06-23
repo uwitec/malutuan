@@ -15,6 +15,23 @@
  */
 package net.paoding.rose.scanner;
 
+import static net.paoding.rose.RoseConstants.CONF_INTERCEPTED_ALLOW;
+import static net.paoding.rose.RoseConstants.CONF_INTERCEPTED_DENY;
+import static net.paoding.rose.RoseConstants.CONF_MODULE_IGNORED;
+import static net.paoding.rose.RoseConstants.CONF_MODULE_PATH;
+import static net.paoding.rose.RoseConstants.CONF_PARENT_MODULE_PATH;
+import static net.paoding.rose.RoseConstants.CONTROLLERS;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import net.paoding.rose.scanning.LoadScope;
 import net.paoding.rose.scanning.ResourceRef;
 import net.paoding.rose.scanning.RoseScanner;
@@ -22,6 +39,7 @@ import net.paoding.rose.scanning.vfs.FileName;
 import net.paoding.rose.scanning.vfs.FileObject;
 import net.paoding.rose.scanning.vfs.FileSystemManager;
 import net.paoding.rose.util.RoseStringUtil;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,15 +47,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.util.Assert;
 import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-
-import static net.paoding.rose.RoseConstants.*;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ModuleResourceProviderImpl implements ModuleResourceProvider {
 
@@ -144,7 +157,7 @@ public class ModuleResourceProviderImpl implements ModuleResourceProvider {
     }
 
     protected void checkModuleResourceCandidate(Local local, FileObject root,
-                                                FileObject topModuleFile, FileObject candidate) throws IOException {
+            FileObject topModuleFile, FileObject candidate) throws IOException {
 
         String relative = topModuleFile.getName().getRelativeName(candidate.getName());
         String mappingPath = null;
@@ -248,7 +261,7 @@ public class ModuleResourceProviderImpl implements ModuleResourceProvider {
     }
 
     protected void handlerModuleResource(Local local, FileObject rootObject, FileObject thisFolder,
-                                         FileObject resource) throws IOException {
+            FileObject resource) throws IOException {
         FileName fileName = resource.getName();
         String bn = fileName.getBaseName();
         if (logger.isDebugEnabled()) {
@@ -265,7 +278,7 @@ public class ModuleResourceProviderImpl implements ModuleResourceProvider {
     }
 
     private void addModuleContext(Local local, FileObject rootObject, FileObject thisFolder,
-                                  FileObject resource) throws IOException {
+            FileObject resource) throws IOException {
         ModuleResource moduleInfo = local.moduleResourceMap.get(thisFolder);
         moduleInfo.addContextResource(resource.getURL());
         if (logger.isDebugEnabled()) {
@@ -275,7 +288,7 @@ public class ModuleResourceProviderImpl implements ModuleResourceProvider {
     }
 
     private void addModuleMessage(Local local, FileObject rootObject, FileObject thisFolder,
-                                  FileObject resource) throws IOException {
+            FileObject resource) throws IOException {
         ModuleResource moduleInfo = local.moduleResourceMap.get(thisFolder);
         String directory = resource.getParent().getURL().toString();
         String messageFileName = resource.getName().getBaseName();
@@ -293,7 +306,7 @@ public class ModuleResourceProviderImpl implements ModuleResourceProvider {
     }
 
     private void addModuleClass(Local local, FileObject rootObject, FileObject thisFolder,
-                                FileObject resource) throws IOException {
+            FileObject resource) throws IOException {
         String className = rootObject.getName().getRelativeName(resource.getName());
         Assert.isTrue(!className.startsWith("/"));
         className = StringUtils.removeEnd(className, ".class");

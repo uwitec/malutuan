@@ -16,12 +16,12 @@
 package net.paoding.rose.controllers;
 
 /**
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
- *
+ * 
  */
-
 import net.paoding.rose.RoseVersion;
+
 import org.springframework.core.SpringVersion;
 
 class Utils {

@@ -15,16 +15,18 @@
  */
 package net.paoding.rose.web.impl.module;
 
-import net.paoding.rose.web.annotation.ReqMethod;
-
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import net.paoding.rose.web.annotation.ReqMethod;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class MethodRef {
 

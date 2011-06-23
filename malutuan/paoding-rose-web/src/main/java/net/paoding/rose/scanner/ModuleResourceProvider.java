@@ -15,22 +15,24 @@
  */
 package net.paoding.rose.scanner;
 
-import net.paoding.rose.scanning.LoadScope;
-
 import java.io.IOException;
 import java.util.List;
 
+import net.paoding.rose.scanning.LoadScope;
+
 /**
  * 用于发现规定查找范围内的web模块资源。
- *
- * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  * @see ModuleResource
+ * 
+ * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface ModuleResourceProvider {
 
     /**
      * 发现规定查找范围内的web模块资源。
-     *
+     * 
      * @return
      */
     public List<ModuleResource> findModuleResources(LoadScope scope) throws IOException;

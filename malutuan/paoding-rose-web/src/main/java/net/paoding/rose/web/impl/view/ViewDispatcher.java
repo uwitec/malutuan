@@ -15,13 +15,16 @@
  */
 package net.paoding.rose.web.impl.view;
 
-import net.paoding.rose.web.Invocation;
-import org.springframework.web.servlet.View;
-
 import java.util.Locale;
 
+import net.paoding.rose.web.Invocation;
+
+import org.springframework.web.servlet.View;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface ViewDispatcher {
 

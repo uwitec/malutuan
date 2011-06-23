@@ -15,12 +15,18 @@
  */
 package net.paoding.rose.web.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
-@Target({ElementType.PARAMETER})
+@Target( { ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DefValue {
@@ -29,8 +35,8 @@ public @interface DefValue {
 
     /**
      * 设置该参数的默认值，如果请求中没有该参数的话，或者发生转化错误时
-     * <p/>
-     *
+     * <p>
+     * 
      * @return
      */
     String value() default NATIVE_DEFAULT;

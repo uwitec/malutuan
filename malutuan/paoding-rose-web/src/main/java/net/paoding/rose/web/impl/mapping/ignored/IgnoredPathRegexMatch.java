@@ -1,8 +1,8 @@
 package net.paoding.rose.web.impl.mapping.ignored;
 
-import net.paoding.rose.web.RequestPath;
-
 import java.util.regex.Pattern;
+
+import net.paoding.rose.web.RequestPath;
 
 public class IgnoredPathRegexMatch implements IgnoredPath {
 

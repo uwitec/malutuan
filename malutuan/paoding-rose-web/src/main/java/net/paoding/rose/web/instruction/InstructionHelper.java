@@ -17,8 +17,9 @@ package net.paoding.rose.web.instruction;
 
 /**
  * 只是一个标志，没有任何接口方法
- *
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface InstructionHelper {
 

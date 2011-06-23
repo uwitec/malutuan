@@ -21,7 +21,9 @@ import net.paoding.rose.web.ParentErrorHandler;
 import net.paoding.rose.web.impl.thread.InvocationBean;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class ParentErrorHandlerImpl implements ParentErrorHandler {
 

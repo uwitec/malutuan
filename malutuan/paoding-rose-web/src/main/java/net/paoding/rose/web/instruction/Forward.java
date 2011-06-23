@@ -16,7 +16,9 @@
 package net.paoding.rose.web.instruction;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class Forward implements InstructionHelper {
 
