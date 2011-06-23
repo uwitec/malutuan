@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 
 public interface FileContent {

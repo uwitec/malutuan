@@ -19,13 +19,15 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public interface FileObject {
 
     /**
      * 该文件是否存在
-     *
+     * 
      * @return
      * @throws IOException
      */
@@ -33,7 +35,7 @@ public interface FileObject {
 
     /**
      * 返回该文件或实体的名称对象
-     *
+     * 
      * @return
      * @throws IOException
      */
@@ -41,7 +43,7 @@ public interface FileObject {
 
     /**
      * 返回子文件或实体(包括目录)
-     *
+     * 
      * @return
      * @throws IOException
      */
@@ -49,7 +51,7 @@ public interface FileObject {
 
     /**
      * 文件的类型，目录或文件。jar文件里面实体也可能是目录或文件。
-     *
+     * 
      * @return
      * @throws IOException
      */
@@ -57,7 +59,7 @@ public interface FileObject {
 
     /**
      * 返回该文件或实体的URL对象
-     *
+     * 
      * @return
      * @throws IOException
      */
@@ -65,7 +67,7 @@ public interface FileObject {
 
     /**
      * 父目录对象
-     *
+     * 
      * @return
      * @throws IOException
      */
@@ -73,7 +75,7 @@ public interface FileObject {
 
     /**
      * 子文件或实体
-     *
+     * 
      * @param name
      * @return
      * @throws IOException
@@ -82,7 +84,7 @@ public interface FileObject {
 
     /**
      * 文件实体内容，如果是目录将抛出IOE异常
-     *
+     * 
      * @return
      * @throws IOException
      */

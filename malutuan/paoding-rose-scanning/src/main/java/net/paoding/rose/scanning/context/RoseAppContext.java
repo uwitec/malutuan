@@ -15,8 +15,11 @@
 */
 package net.paoding.rose.scanning.context;
 
+import java.io.IOException;
+
 import net.paoding.rose.scanning.LoadScope;
 import net.paoding.rose.scanning.context.core.RoseResources;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
@@ -29,11 +32,11 @@ import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.core.io.Resource;
 
-import java.io.IOException;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @author han.liao [in355hz@gmail.com]
+ * 
  */
 public class RoseAppContext extends AbstractXmlApplicationContext {
 
@@ -59,8 +62,9 @@ public class RoseAppContext extends AbstractXmlApplicationContext {
 
     /**
      * 返回对应类型的唯一 Bean, 包括可能的祖先 {@link ApplicationContext} 中对应类型的 Bean.
-     *
+     * 
      * @param beanType - Bean 的类型
+     * 
      * @throws BeansException
      */
     public <T> T getBean(Class<T> beanType) throws BeansException {
@@ -86,9 +90,7 @@ public class RoseAppContext extends AbstractXmlApplicationContext {
         super.prepareBeanFactory(beanFactory);
     }
 
-    /**
-     * Rose对BeanFactory的特殊处理，必要时可以覆盖这个方法去掉Rose的特有的处理
-     */
+    /** Rose对BeanFactory的特殊处理，必要时可以覆盖这个方法去掉Rose的特有的处理 */
     protected void prepareBeanFactoryByRose(ConfigurableListableBeanFactory beanFactory) {
         BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
         AnnotationConfigUtils.registerAnnotationConfigProcessors(registry);

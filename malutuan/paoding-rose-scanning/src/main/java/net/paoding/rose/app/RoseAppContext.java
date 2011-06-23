@@ -18,18 +18,19 @@ package net.paoding.rose.app;
 /**
  * <strong>此类将在2010-06-01删除</strong>，请现在立即改使用另外一个package的同名类
  * {@link net.paoding.rose.scanning.context.RoseAppContext}
- * <p/>
- *
+ * <p>
+ * 
+ * @deprecated
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
  * @author han.liao [in355hz@gmail.com]
- * @deprecated
  */
 @Deprecated
 public class RoseAppContext extends net.paoding.rose.scanning.context.RoseAppContext {
 
     /**
      * 创建 RoseAppContext.
-     *
+     * 
      * @param contextConfigLocation - 配置加载路径
      */
     public RoseAppContext() {
@@ -38,9 +39,9 @@ public class RoseAppContext extends net.paoding.rose.scanning.context.RoseAppCon
 
     /**
      * 创建 RoseAppContext.
-     *
+     * 
      * @param packages - "com.xiaonei.yourapp, com.xiaonei.myapp" ... <br>
-     *                 表示加载这些package所在的jar或根class目录的/applicationContext*.xml文件
+     *        表示加载这些package所在的jar或根class目录的/applicationContext*.xml文件
      */
     public RoseAppContext(String packages, boolean refresh) {
         super(packages, refresh);

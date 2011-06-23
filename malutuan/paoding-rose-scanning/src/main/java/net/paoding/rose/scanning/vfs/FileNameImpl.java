@@ -18,7 +18,9 @@ package net.paoding.rose.scanning.vfs;
 import java.io.IOException;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ *
  */
 public class FileNameImpl implements FileName {
 

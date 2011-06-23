@@ -15,19 +15,21 @@
  */
 package net.paoding.rose.scanning.vfs;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+
 import org.apache.commons.collections.map.LRUMap;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Map;
-
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class FileSystemManager {
 

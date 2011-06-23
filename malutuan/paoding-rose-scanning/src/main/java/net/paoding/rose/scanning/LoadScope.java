@@ -15,14 +15,16 @@
  */
 package net.paoding.rose.scanning;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class LoadScope {
 
@@ -34,13 +36,13 @@ public class LoadScope {
     /**
      * 通过一个一个开发者设置的字符串，创建一个LoadScope对象。
      * 如果在loadScope中没有指定componetType的，使用defType作为他的componetType.
-     * <p/>
+     * <p>
      * loadScopeString: componetConf [; componetConf]*<br>
      * componetConf: [componetType = ] componetConfValue<br>
      * componetType: 'controllers' | 'applicationContext' | 'messages' |
      * '*' <br>
      * componetConfValue: package [, packages]*<br>
-     *
+     * 
      * @param loadScopeString
      * @param defType
      */

@@ -16,7 +16,9 @@
 package net.paoding.rose.scanning.vfs;
 
 /**
+ * 
  * @author 王志亮 [qieqie.wang@gmail.com]
+ * 
  */
 public class FileType {
 

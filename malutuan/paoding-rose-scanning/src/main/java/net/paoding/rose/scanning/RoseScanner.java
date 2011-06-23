@@ -15,6 +15,20 @@
  */
 package net.paoding.rose.scanning;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.ref.SoftReference;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,14 +38,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.util.Assert;
 import org.springframework.util.ResourceUtils;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.ref.SoftReference;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.util.*;
 
 /**
  * @author zhiliang.wang 王志亮 [qieqie.wang@gmail.com]
@@ -142,7 +148,7 @@ public class RoseScanner {
 
     /**
      * 将要被扫描的普通类地址(比如WEB-INF/classes或target/classes之类的地址)
-     *
+     * 
      * @param resourceLoader
      * @return
      * @throws IOException
@@ -243,7 +249,7 @@ public class RoseScanner {
 
     /**
      * 将要被扫描的jar资源
-     *
+     * 
      * @param resourceLoader
      * @return
      * @throws IOException
